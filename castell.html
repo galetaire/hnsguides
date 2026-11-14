@@ -120,48 +120,95 @@
 <p>At this point we move to the Castell app, and the guide splits into two different paths, depending on how you decide to deliver your static site to visitors:</p>
 
 <ul>
-  <li><b>Router port forwarding.</b> A few years ago this setup would have been fine, but nowadays, with critical bugs and exploits appearing every week or so because of AI, this option feels less appealing, and not opening your router's ports feels like the right decision if you want to host your site permanently. Even so, if you have a good understanding of what you're doing, if it's only temporary, or if it's just to try out this tutorial (closing the ports afterwards), this option is fine for learning the process.</li>
-  <li><b>VPS tunnel through Tailscale.</b> This option adds a cost, since you'll need a VPS service. It isn't expensive: the cheapest ones cost around $20–30 a year. In exchange, it's safer, since you don't need to open any ports, and it's the recommended option if you want to keep your site online permanently. For this guide I'll be using <a href="https://www.netcup.com/en/server/vps/vps-pico-g11.5s-iv-12m-nue" target="_blank" rel="noopener noreferrer"><b>NetCup</b></a> (VPS pico G11.5s), but feel free to use whatever service suits you.</li>
+  <li><b>Router port forwarding.</b> A few years ago this setup would have been fine, but nowadays, with critical bugs and exploits appearing every week or so because of AI, this option feels less appealing, and not opening your router's ports feels like the right decision if you want to host your site permanently. Even so, if you have a good understanding of what you're doing, if it's only temporary, or if it's just to try out this tutorial (closing the ports afterwards), this option is fine.</li>
+  <li><b>VPS tunnel through Tailscale.</b> This option adds a cost, since you'll need a VPS service. It isn't that expensive: the cheapest ones cost around $20–30 a year. In exchange, it's safer, since you don't need to open any ports, and it's the recommended option if you want to keep your site online permanently. For this guide I'll be using <a href="https://www.netcup.com/en/server/vps/vps-pico-g11.5s-iv-12m-nue" target="_blank" rel="noopener noreferrer"><b>NetCup</b></a> (VPS pico G11.5s), but feel free to use whatever service suits you.</li>
 </ul>
 
 <div class="window">
   <div class="window-bar">🏰 Castell: choosing Router forward or VPS</div>
   <div class="collage">
-    <a class="collage-item wide" href="images/castell2.png"><img src="images/castell2.png" alt="Choosing Router forward or VPS" loading="lazy"><span class="collage-caption"><b>5</b> In "Connection", choose either router forward or VPS</span></a>
+    <a class="collage-item wide" href="images/castell2.png"><img src="images/castell2.png" alt="Choosing Router forward or VPS" loading="lazy"><span class="collage-caption"><b>5</b> In “Connection”, choose either router port forwarding or a VPS. In both cases, check that the “Public IP/VPS IP” and “Umbrel LAN IP” fields show the correct addresses.</span></a>
   </div>
 </div>
 
 <h4 id="port-forwarding">Path A: Router port forwarding (recommended for learning)</h4>
 
-<p>Run <code>Fingertip-dit-0.0.4.msi</code>. Before you do:</p>
+<p>If you choose this path, after saving your changes under "Connection", check that the "Public IP" field shows your actual public IP address, and that the "Umbrel LAN IP" field shows your Umbrel's IP address on your local network.</p>
 
-<ul>
-  <li><strong>Quit old Fingertip first</strong> (tray icon → Quit), if you have an older version.</li>
-  <li>It's a per-user install into <code>%LOCALAPPDATA%\Fingertip</code> and needs no admin rights. It upgrades an existing Fingertip 0.0.3 in place.</li>
-  <li>The files aren't code-signed, so Microsoft Defender SmartScreen may warn: <strong>More info → Run anyway</strong>.</li>
-</ul>
+<p>Once the site connection is defined, you need to add a new site: in the window that opens, type the name of your TLD, then select <strong>Static website</strong>. As you can see, there is also an <strong>Another app</strong> option. It is meant for hosting dynamic sites, which require more technical skill. I strongly advise against setting up a dynamic site through router port forwarding unless you fully understand the security risks. Otherwise, stick to a static site (HTML, CSS and JS), which offers almost no attack surface, apart from making your IP public.</p>
 
 <div class="window">
-  <div class="window-bar">Fingertip-dit setup screenshots on Windows</div>
+  <div class="window-bar">🏰 Castell: type your TLD and choose static site</div>
   <div class="collage">
-    <a class="collage-item wide" href="images/fingertip1.png"><img src="images/fingertip1.png" alt="Fingertip-dit in the Windows start menu" loading="lazy"><span class="collage-caption"><b>1</b> Install and open Fingertip-dit</span></a>
-    <a class="collage-item" href="images/fingertip2.png"><img src="images/fingertip2.png" alt="Dialog asking to automatically configure Fingertip" loading="lazy"><span class="collage-caption"><b>2</b> Allow automatic setup</span></a>
-    <a class="collage-item tall" href="images/fingertip3.png"><img src="images/fingertip3.png" alt="Windows security warning to install the DNSSEC certificate" loading="lazy"><span class="collage-caption"><b>3</b> Trust its certificate</span></a>
-    <a class="collage-item" href="images/fingertip4.png"><img src="images/fingertip4.png" alt="Fingertip status page while the resolver is syncing" loading="lazy"><span class="collage-caption"><b>4</b> Wait while it syncs</span></a>
-    <a class="collage-item" href="images/fingertip5.png"><img src="images/fingertip5.png" alt="Fingertip status page showing the resolver is ready" loading="lazy"><span class="collage-caption"><b>5</b> Ready to resolve</span></a>
-    <a class="collage-item wide" href="images/fingertip6.png"><img src="images/fingertip6.png" alt="The belikebill Handshake site open in Firefox" loading="lazy"><span class="collage-caption"><b>6</b> Visit a Handshake site, e.g. https://belikebill/</span></a>
+    <a class="collage-item wide" href="images/castell3.png"><img src="images/castell3.png" alt="Type your TLD and choose static site" loading="lazy"><span class="collage-caption"><b>6</b> Type your TLD and choose static site</span></a>
   </div>
 </div>
 
+<p>After selecting <strong>Static website</strong>, press <strong>Add site</strong>, and the new site will appear in your main menu. Open it to configure the site. In the top bar you will see a five-step checklist you need to complete. Step 1 is <strong>DNS records</strong>: go to Yeil DNS, open your TLD there, and add the two records that Castell shows you.</p>
+
+<div class="window">
+  <div class="window-bar">🏰 Castell: Copy the generated records and add them to Yeil</div>
+  <div class="collage">
+    <a class="collage-item wide" href="images/castell4.png"><img src="images/castell4.png" alt="Copy the generated records and add them to Yeil, Namebase, or whichever nameserver you’re using." loading="lazy"><span class="collage-caption"><b>7</b> Copy the generated records and add them to Yeil, Namebase, or whichever nameserver you’re using.</span></a>
+    <a class="collage-item wide" href="images/castell8.png"><img src="images/castell8.png" alt="Add the records to Yeil, Namebase, or whichever nameserver you’re using." loading="lazy"><span class="collage-caption"><b>8</b> Add the records to Yeil, Namebase, or whichever nameserver you’re using.</span></a>
+  </div>
+</div>
+<table>
+  <thead>
+    <tr><th>Name</th><th>Type</th><th>IPv4 address</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>@</code></td><td><code>A</code></td><td>Your public IP address</td></tr>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <tr><th>Name</th><th>Type</th><th>Certificate data (hex)</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>_443._tcp</code></td><td><code>TLSA</code></td><td>The hash string from the TLSA record shown in Castell. Yeil DNS fills in the <code>3 1 1</code> prefix automatically, so don't type it: paste only the string that comes after those first three numbers.</td></tr>
+  </tbody>
+</table>
+
+<p>Step 2 of the five-step checklist is <strong>Delegation</strong>, which we already completed in section <a href="#connect-bob-yeil">4. Connect your domain: Bob Wallet ↔ Yeil</a>. <strong>Run checks</strong> can't confirm this step, but that's fine: if Step 1 passes, delegation is set up correctly.</p>
+
+<p>Step 3 is about opening the port 443 on your router. Type your router's IP address into your browser to open its settings page. Every router's interface is a bit different, but port forwarding is usually under the network settings. Create a new rule and give it a name you'll recognize, such as <code>https-DANE</code>. Set the internal port range to <code>8443</code>–<code>8443</code> and the external port range to <code>443</code>–<code>443</code>, select <strong>TCP</strong> as the protocol, then add or apply the rule. It should appear as enabled, which means port 443 is now open. Finally, go back to Castell and run the checks again; Step 3 should turn green.</p>
+
+<div class="window">
+  <div class="window-bar">🏰 Castell: Open the port 443 on your router</div>
+  <div class="collage">
+    <a class="collage-item wide" href="images/castell5.png"><img src="images/castell5.png" alt="Open the port 443 on your router." loading="lazy"><span class="collage-caption"><b>9</b> Open the port 443 on your router.</span></a>
+  </div>
+</div>
+
+<p>Step 4 is uploading your website files. Castell automatically adds a test <code>index.html</code>, so you don't need to upload your own site until you've confirmed it's live. If you'd rather upload it now, that's fine too: you can upload individual files or a whole folder with subfolders, and the folder structure and paths will be kept.</p>
+
+<div class="window">
+  <div class="window-bar">🏰 Castell: Upload you website files or folders</div>
+  <div class="collage">
+    <a class="collage-item wide" href="images/castell6.png"><img src="images/castell6.png" alt="Upload you website files or folders." loading="lazy"><span class="collage-caption"><b>10</b> Upload you website files or folders.</span></a>
+  </div>
+</div>
+
+<p>Step 5 confirms that your site is live and set up correctly. Click <strong>Run checks</strong> again: if Step 5 and all the previous steps are green (except Step 2, Delegation, which isn't checked), your site is live. You can then open it in your browser. To be sure it really works, try it from a different internet connection than your home router's, for example your phone's mobile data.</p>
+
+<div class="window">
+  <div class="window-bar">🏰 Castell: Confirm that your site is online</div>
+  <div class="collage">
+    <a class="collage-item wide" href="images/castell7.png"><img src="images/castell7.png" alt="Confirm that your site is online" loading="lazy"><span class="collage-caption"><b>11</b> Confirm that your site is online and under https.</span></a>
+  </div>
+</div>
+
+
 <h4 id="tunnel">Path B: VPS tunnel through Tailscale (recommended for serving your site permanently)</h4>
 
-<p>Run <code>Fingertip-dit-0.0.4.msi</code>. Before you do:</p>
+<p>In order to keep thing shorts you can consult the Path A for all the setps except for the Step 3, in this case we wont be open the ports of our router but instead, we will</p>
 
-<ul>
-  <li><strong>Quit old Fingertip first</strong> (tray icon → Quit), if you have an older version.</li>
-  <li>It's a per-user install into <code>%LOCALAPPDATA%\Fingertip</code> and needs no admin rights. It upgrades an existing Fingertip 0.0.3 in place.</li>
-  <li>The files aren't code-signed, so Microsoft Defender SmartScreen may warn: <strong>More info → Run anyway</strong>.</li>
-</ul>
+<code>Visitor ──443──> netcup VPS (HAProxy, TCP mode, no decryption)
+                    │ Tailscale tunnel, outgoing from your home
+                    ▼
+                 Umbrel :8443 ──> Caddy (your keys, DANE intact)</code>
 
 <div class="window">
   <div class="window-bar">Fingertip-dit setup screenshots on Windows</div>
