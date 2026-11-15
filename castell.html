@@ -33,10 +33,10 @@
 </div>
 
 <div class="guide">
-<h2>How to Host an HTTPS website on a Handshake TLD</h2>
+<h2>How to host an HTTPS website on a Handshake TLD</h2>
 
 <blockquote>
-  <p><b>Note:</b> <a href="https://github.com/galetaire/castell" target="_blank" rel="noopener noreferrer"><b>Castell</b></a> is an app that creates the private key and certificate for your TLD, computes the TLSA record and configures the web server (using <a href="https://caddyserver.com/" target="_blank" rel="noopener noreferrer"><b>Caddy</b></a>). It gives you the records to add at your DNS host and the port-forwarding rule to set on your router. Finally, it stores and serves the files for your website.</p>
+  <p><b>Note:</b> <a href="https://github.com/galetaire/castell" target="_blank" rel="noopener noreferrer"><b>Castell</b></a> is an app that creates the private key and certificate for your TLD, computes the TLSA record and configures the web server (using <a href="https://caddyserver.com/" target="_blank" rel="noopener noreferrer"><b>Caddy</b></a>). It gives you the records to add at your DNS host and the VPS / port-forwarding rule to set it up. Finally, it stores and serves the files for your website.</p>
 </blockquote>
 
 <nav class="toc" aria-label="On this page">
@@ -62,8 +62,8 @@
   <li>A computer running <a href="https://umbrel.com/umbrelos" target="_blank" rel="noopener noreferrer"><b>UmbrelOS</b></a>, with <a href="https://github.com/galetaire/castell" target="_blank" rel="noopener noreferrer"><b>Castell</b></a> installed.</li>
   <li><a href="https://github.com/shadstoneofficial/bob-wallet/releases" target="_blank" rel="noopener noreferrer"><b>Bob wallet</b></a> or <a href="https://namebase.io/wallet" target="_blank" rel="noopener noreferrer"><b>Namebase wallet</b></a>, with your top-level domain (TLD) and some HNS coins.</li>
   <li>A <a href="https://dns.yeil.app" target="_blank" rel="noopener noreferrer"><b>Yeil DNS</b></a> account.</li>
-  <li>A <b>VPS</b> (optional, but highly recommended).</li>
-  <li>A <a href="https://apps.umbrel.com/app/tailscale" target="_blank" rel="noopener noreferrer"><b>Tailscale</b></a> account and its Umbrel app (optional, but highly recommended).</li>
+  <li>A <b>VPS</b> with a public IPv4 address (Path B only).</li>
+  <li>A <a href="https://apps.umbrel.com/app/tailscale" target="_blank" rel="noopener noreferrer"><b>Tailscale</b></a> account and its Umbrel app (Path B only).</li>
 </ul>
 
 <h3 id="installing-castell">1. Installing Castell</h3>
@@ -119,23 +119,23 @@
 
 <p>At this point we move to the Castell app, and the guide splits into two different paths, depending on how you decide to deliver your static site to visitors:</p>
 
-<ul>
+<ul class="spaced">
   <li><b>Router port forwarding.</b> A few years ago this setup would have been fine, but nowadays, with critical bugs and exploits appearing every week or so because of AI, this option feels less appealing, and not opening your router's ports feels like the right decision if you want to host your site permanently. Even so, if you have a good understanding of what you're doing, if it's only temporary, or if it's just to try out this tutorial (closing the ports afterwards), this option is fine.</li>
   <li><b>VPS tunnel through Tailscale.</b> This option adds a cost, since you'll need a VPS service. It isn't that expensive: the cheapest ones cost around $20–30 a year. In exchange, it's safer, since you don't need to open any ports, and it's the recommended option if you want to keep your site online permanently. For this guide I'll be using <a href="https://www.netcup.com/en/server/vps/vps-pico-g11.5s-iv-12m-nue" target="_blank" rel="noopener noreferrer"><b>NetCup</b></a> (VPS pico G11.5s), but feel free to use whatever service suits you.</li>
 </ul>
 
 <div class="window">
-  <div class="window-bar">🏰 Castell: choosing Router forward or VPS</div>
+  <div class="window-bar">🏰 Castell: choosing router port forwarding or a VPS</div>
   <div class="collage">
-    <a class="collage-item wide" href="images/castell2.png"><img src="images/castell2.png" alt="Choosing Router forward or VPS" loading="lazy"><span class="collage-caption"><b>5</b> In “Connection”, choose either router port forwarding or a VPS. In both cases, check that the “Public IP/VPS IP” and “Umbrel LAN IP” fields show the correct addresses.</span></a>
+    <a class="collage-item wide" href="images/castell2.png"><img src="images/castell2.png" alt="Castell connection settings with the router port forwarding and VPS options" loading="lazy"><span class="collage-caption"><b>5</b> In “Connection”, choose either router port forwarding or a VPS. In both cases, check that the “Public IP/VPS IP” and “Umbrel LAN IP” fields show the correct addresses.</span></a>
   </div>
 </div>
 
 <h4 id="port-forwarding">Path A: Router port forwarding (recommended for learning)</h4>
 
-<p>If you choose this path, after saving your changes under "Connection", check that the "Public IP" field shows your actual public IP address, and that the "Umbrel LAN IP" field shows your Umbrel's IP address on your local network.</p>
+<p>If you choose this path, after saving your changes under <strong>Connection</strong>, check that the <strong>Public IP</strong> field shows your actual public IP address, and that the <strong>Umbrel LAN IP</strong> field shows your Umbrel's IP address on your local network.</p>
 
-<p>Once the site connection is defined, you need to add a new site: in the window that opens, type the name of your TLD, then select <strong>Static website</strong>. As you can see, there is also an <strong>Another app</strong> option. It is meant for hosting dynamic sites, which require more technical skill. I strongly advise against setting up a dynamic site through router port forwarding unless you fully understand the security risks. Otherwise, stick to a static site (HTML, CSS and JS), which offers almost no attack surface, apart from making your IP public.</p>
+<p>Once the site connection is defined, you need to <strong>Add a site</strong>: in the window that opens, type the name of your TLD, then select <strong>Static website</strong>. As you can see, there is also an <strong>Another app</strong> option. It is meant for hosting dynamic sites, which require more technical skill. I strongly advise against setting up a dynamic site through router port forwarding unless you fully understand the security risks. Otherwise, stick to a static site (HTML, CSS and JS), which offers almost no attack surface, apart from making your IP public (becoming increasingly undesirable in the age of AI, which is why <strong>Path B</strong> is recommended).</p>
 
 <div class="window">
   <div class="window-bar">🏰 Castell: type your TLD and choose static site</div>
@@ -144,15 +144,16 @@
   </div>
 </div>
 
-<p>After selecting <strong>Static website</strong>, press <strong>Add site</strong>, and the new site will appear in your main menu. Open it to configure the site. In the top bar you will see a five-step checklist you need to complete. Step 1 is <strong>DNS records</strong>: go to Yeil DNS, open your TLD there, and add the two records that Castell shows you.</p>
+<p>The new site will appear in your main menu. Open it to configure the site. In the top bar you will see a five-step checklist you need to complete. <strong>Step 1</strong> is <strong>DNS records</strong>: go to Yeil DNS, open your TLD there, and add the two records that Castell shows you (<strong>A</strong> and <strong>TLSA</strong>).</p>
 
 <div class="window">
-  <div class="window-bar">🏰 Castell: Copy the generated records and add them to Yeil</div>
+  <div class="window-bar">🏰 Castell: copy the generated records and add them to Yeil</div>
   <div class="collage">
     <a class="collage-item wide" href="images/castell4.png"><img src="images/castell4.png" alt="Copy the generated records and add them to Yeil, Namebase, or whichever nameserver you’re using." loading="lazy"><span class="collage-caption"><b>7</b> Copy the generated records and add them to Yeil, Namebase, or whichever nameserver you’re using.</span></a>
     <a class="collage-item wide" href="images/castell8.png"><img src="images/castell8.png" alt="Add the records to Yeil, Namebase, or whichever nameserver you’re using." loading="lazy"><span class="collage-caption"><b>8</b> Add the records to Yeil, Namebase, or whichever nameserver you’re using.</span></a>
   </div>
 </div>
+
 <table>
   <thead>
     <tr><th>Name</th><th>Type</th><th>IPv4 address</th></tr>
@@ -171,58 +172,372 @@
   </tbody>
 </table>
 
-<p>Step 2 of the five-step checklist is <strong>Delegation</strong>, which we already completed in section <a href="#connect-bob-yeil">4. Connect your domain: Bob Wallet ↔ Yeil</a>. <strong>Run checks</strong> can't confirm this step, but that's fine: if Step 1 passes, delegation is set up correctly.</p>
+<p><strong>Step 2</strong> of the five-step checklist is <strong>Delegation</strong>, which we already completed in section <a href="#connect-bob-yeil">4. Connect your domain: Bob Wallet ↔ Yeil</a>. <strong>Run checks</strong> can't confirm this step, but that's fine: if Step 1 passes, delegation is set up correctly.</p>
 
-<p>Step 3 is about opening the port 443 on your router. Type your router's IP address into your browser to open its settings page. Every router's interface is a bit different, but port forwarding is usually under the network settings. Create a new rule and give it a name you'll recognize, such as <code>https-DANE</code>. Set the internal port range to <code>8443</code>–<code>8443</code> and the external port range to <code>443</code>–<code>443</code>, select <strong>TCP</strong> as the protocol, then add or apply the rule. It should appear as enabled, which means port 443 is now open. Finally, go back to Castell and run the checks again; Step 3 should turn green.</p>
+<p><strong>Step 3</strong> is about opening port 443 on your router. Type your router's IP address into your browser to open its settings page. Every router's interface is a bit different, but port forwarding is usually under the network settings. Create a new rule and give it a name you'll recognize, such as <code>https-DANE</code>. Set the internal port range to <code>8443</code>–<code>8443</code> and the external port range to <code>443</code>–<code>443</code>, select <strong>TCP</strong> as the protocol, then add or apply the rule. It should appear as enabled, which means port 443 is now open. Finally, go back to Castell and run the checks again; Step 3 should turn green.</p>
 
 <div class="window">
-  <div class="window-bar">🏰 Castell: Open the port 443 on your router</div>
+  <div class="window-bar">🏰 Castell: open port 443 on your router</div>
   <div class="collage">
-    <a class="collage-item wide" href="images/castell5.png"><img src="images/castell5.png" alt="Open the port 443 on your router." loading="lazy"><span class="collage-caption"><b>9</b> Open the port 443 on your router.</span></a>
+    <a class="collage-item wide" href="images/castell5.png"><img src="images/castell5.png" alt="Router port forwarding rule from external port 443 to internal port 8443" loading="lazy"><span class="collage-caption"><b>9</b> Open port 443 on your router.</span></a>
   </div>
 </div>
 
-<p>Step 4 is uploading your website files. Castell automatically adds a test <code>index.html</code>, so you don't need to upload your own site until you've confirmed it's live. If you'd rather upload it now, that's fine too: you can upload individual files or a whole folder with subfolders, and the folder structure and paths will be kept.</p>
+<p><strong>Step 4</strong> is uploading your website files. Castell automatically adds a test <code>index.html</code>, so you don't need to upload your own site until you've confirmed it's live. If you'd rather upload it now, that's fine too: you can upload individual files or a whole folder with subfolders, and the folder structure and paths will be kept.</p>
 
 <div class="window">
-  <div class="window-bar">🏰 Castell: Upload you website files or folders</div>
+  <div class="window-bar">🏰 Castell: upload your website files or folders</div>
   <div class="collage">
-    <a class="collage-item wide" href="images/castell6.png"><img src="images/castell6.png" alt="Upload you website files or folders." loading="lazy"><span class="collage-caption"><b>10</b> Upload you website files or folders.</span></a>
+    <a class="collage-item wide" href="images/castell6.png"><img src="images/castell6.png" alt="Castell file upload for the website files and folders" loading="lazy"><span class="collage-caption"><b>10</b> Upload your website files or folders.</span></a>
   </div>
 </div>
 
-<p>Step 5 confirms that your site is live and set up correctly. Click <strong>Run checks</strong> again: if Step 5 and all the previous steps are green (except Step 2, Delegation, which isn't checked), your site is live. You can then open it in your browser. To be sure it really works, try it from a different internet connection than your home router's, for example your phone's mobile data.</p>
+<p><strong>Step 5</strong> confirms that your site is live and set up correctly. Click <strong>Run checks</strong> again: if Step 5 and all the previous steps are green (except Step 2, Delegation, which isn't checked), your site is live. You can then open it in your browser. To be sure it really works, try it from a different internet connection than your home router's, for example your phone's mobile data.</p>
 
 <div class="window">
-  <div class="window-bar">🏰 Castell: Confirm that your site is online</div>
+  <div class="window-bar">🏰 Castell: confirm that your site is online</div>
   <div class="collage">
-    <a class="collage-item wide" href="images/castell7.png"><img src="images/castell7.png" alt="Confirm that your site is online" loading="lazy"><span class="collage-caption"><b>11</b> Confirm that your site is online and under https.</span></a>
+    <a class="collage-item wide" href="images/castell7.png"><img src="images/castell7.png" alt="Confirm that your site is online" loading="lazy"><span class="collage-caption"><b>11</b> Confirm that your site is online and served over HTTPS.</span></a>
   </div>
 </div>
 
+<p>After that, your site should be online at your domain 🎉! Remember, if your goal is to keep your site online, you should consider adding a VPS to your setup for security reasons. This is explained in <strong>Path B</strong>.</p>
 
 <h4 id="tunnel">Path B: VPS tunnel through Tailscale (recommended for serving your site permanently)</h4>
 
-<p>In order to keep thing shorts you can consult the Path A for all the setps except for the Step 3, in this case we wont be open the ports of our router but instead, we will</p>
+<p>This path gets you to the same result as <strong>Path A</strong> without opening any port on your router. A small VPS stands in front of your Umbrel: visitors connect to the VPS, and HAProxy on the VPS passes their encrypted traffic, without decrypting it, through a Tailscale tunnel to Castell. TLS still ends on your Umbrel with your site's own key, so DANE keeps working, and even a compromised VPS can't impersonate your site. Your home IP stays out of DNS.</p>
 
-<code>Visitor ──443──> netcup VPS (HAProxy, TCP mode, no decryption)
-                    │ Tailscale tunnel, outgoing from your home
-                    ▼
-                 Umbrel :8443 ──> Caddy (your keys, DANE intact)</code>
+<p>The Castell side is almost the same as in Path A. The difference is Step 3 of Castell's checklist: instead of a router rule, you set up the VPS and the tunnel below, and Castell shows that step as <strong>VPS</strong>.</p>
 
 <div class="window">
-  <div class="window-bar">Fingertip-dit setup screenshots on Windows</div>
-  <div class="collage">
-    <a class="collage-item wide" href="images/fingertip1.png"><img src="images/fingertip1.png" alt="Fingertip-dit in the Windows start menu" loading="lazy"><span class="collage-caption"><b>1</b> Install and open Fingertip-dit</span></a>
-    <a class="collage-item" href="images/fingertip2.png"><img src="images/fingertip2.png" alt="Dialog asking to automatically configure Fingertip" loading="lazy"><span class="collage-caption"><b>2</b> Allow automatic setup</span></a>
-    <a class="collage-item tall" href="images/fingertip3.png"><img src="images/fingertip3.png" alt="Windows security warning to install the DNSSEC certificate" loading="lazy"><span class="collage-caption"><b>3</b> Trust its certificate</span></a>
-    <a class="collage-item" href="images/fingertip4.png"><img src="images/fingertip4.png" alt="Fingertip status page while the resolver is syncing" loading="lazy"><span class="collage-caption"><b>4</b> Wait while it syncs</span></a>
-    <a class="collage-item" href="images/fingertip5.png"><img src="images/fingertip5.png" alt="Fingertip status page showing the resolver is ready" loading="lazy"><span class="collage-caption"><b>5</b> Ready to resolve</span></a>
-    <a class="collage-item wide" href="images/fingertip6.png"><img src="images/fingertip6.png" alt="The belikebill Handshake site open in Firefox" loading="lazy"><span class="collage-caption"><b>6</b> Visit a Handshake site, e.g. https://belikebill/</span></a>
-  </div>
+  <div class="window-bar">🏰 Castell: how visitors reach your Umbrel through the VPS</div>
+  <svg viewBox="0 0 760 288" role="img" aria-label="Visitors reach only the VPS; a Tailscale tunnel carries their traffic to the Umbrel" style="display:block;width:100%;height:auto;padding:8px;box-sizing:border-box;font-family:inherit" font-size="13">
+    <defs>
+      <marker id="castell-route-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--text-muted)"/></marker>
+    </defs>
+    <text x="24" y="32" font-size="15" font-weight="700" style="fill:var(--text)">Visitors reach only the VPS; the tunnel carries their traffic to the Umbrel</text>
+    <rect x="540" y="52" width="196" height="212" rx="8" style="fill:var(--surface-2);stroke:var(--border)" stroke-width="1.25"/>
+    <text x="556" y="76" font-weight="700" style="fill:var(--text)">Home network</text>
+    <g fill="none" style="stroke:var(--text-muted)" stroke-width="1.25">
+      <path d="M160 112H210" marker-end="url(#castell-route-arrow)"/>
+      <path d="M430 132H556" marker-end="url(#castell-route-arrow)"/>
+    </g>
+    <rect x="24" y="76" width="136" height="72" rx="8" fill="none" style="stroke:var(--text-muted)" stroke-width="1.25"/>
+    <text x="40" y="100" font-weight="700" style="fill:var(--text)">Visitor</text>
+    <text x="40" y="116" font-size="11.5" style="fill:var(--text-muted)">DANE-capable</text>
+    <text x="40" y="132" font-size="11.5" style="fill:var(--text-muted)">browser or proxy</text>
+    <rect x="210" y="76" width="220" height="104" rx="8" fill="none" style="stroke:var(--text-muted)" stroke-width="1.25"/>
+    <text x="226" y="100" font-weight="700" style="fill:var(--text)">VPS · VPS_IP</text>
+    <text x="226" y="116" font-size="11.5" style="fill:var(--text-muted)">HAProxy in TCP mode</text>
+    <text x="226" y="132" font-size="11.5" style="fill:var(--text-muted)">:443 passes TLS through</text>
+    <text x="226" y="148" font-size="11.5" style="fill:var(--text-muted)">:80 redirects to https://</text>
+    <text x="226" y="164" font-size="11.5" style="fill:var(--text-muted)">Firewall: 22, 80, 443 only</text>
+    <rect x="556" y="88" width="164" height="88" rx="8" style="fill:var(--accent-soft);stroke:var(--accent)" stroke-width="2"/>
+    <text x="572" y="112" font-weight="700" style="fill:var(--text)">Umbrel</text>
+    <text x="572" y="128" font-size="11.5" style="fill:var(--text)">Castell (Caddy) :8443</text>
+    <text x="572" y="144" font-size="11.5" style="fill:var(--text)">TLS ends here, with</text>
+    <text x="572" y="160" font-size="11.5" style="fill:var(--text)">your site's own key</text>
+    <rect x="556" y="192" width="164" height="56" rx="8" fill="none" style="stroke:var(--text-muted)" stroke-width="1.25" stroke-dasharray="4 4"/>
+    <text x="572" y="216" font-weight="700" style="fill:var(--text-muted)">Router</text>
+    <text x="572" y="232" font-size="11.5" style="fill:var(--text-muted)">no port forward</text>
+    <text x="185" y="104" text-anchor="middle" font-size="11.5" style="fill:var(--text-muted)">443, 80</text>
+    <text x="485" y="124" text-anchor="middle" font-size="11.5" style="fill:var(--text-muted)">Tailscale tunnel</text>
+    <text x="485" y="148" text-anchor="middle" font-size="11.5" style="fill:var(--text-muted)">ACL: only :8443</text>
+  </svg>
 </div>
 
-<h3 id="hosting">6.GUIDE STILL UNFINISHED 🤪</h3>
+<p>The commands below use placeholders in capitals. Replace them with your own values when necessary:</p>
+
+<table>
+  <thead>
+    <tr><th>Placeholder</th><th>Meaning</th><th>Example</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>VPS_IP</code></td><td>The VPS's public IPv4 address, from your provider</td><td><code>203.0.113.10</code></td></tr>
+    <tr><td><code>UMBREL_TS_IP</code></td><td>Your Umbrel's Tailscale address (you get it in step B4)</td><td><code>100.101.102.103</code></td></tr>
+    <tr><td><code>UMBREL_LAN_IP</code></td><td>Your Umbrel on your home network</td><td><code>192.168.1.27</code></td></tr>
+    <tr><td><code>HOME_IP</code></td><td>Your home's public IP, only used to check that it's closed (step B8)</td><td><code>198.51.100.20</code></td></tr>
+    <tr><td><code>SITE</code></td><td>Your Handshake TLD, for testing</td><td><code>yourtld</code></td></tr>
+  </tbody>
+</table>
+
+<p>Each command says where it runs: <strong>PowerShell on your PC</strong>, or <strong>on the VPS</strong>, in an SSH session whose prompt starts with <code>root@</code>. The commands are for Windows; on macOS or Linux, use the Terminal instead.</p>
+
+<h5 id="tunnel-order">B1. Order the VPS</h5>
+
+<p>The VPS only relays encrypted traffic, so the smallest plan is enough. When ordering any:</p>
+
+<ul>
+  <li>Make sure the plan includes a <b>public IPv4 address</b>. Your A record and Castell's checks use IPv4.</li>
+  <li>Choose <b>Debian 13</b> as the operating system.</li>
+  <li>Keep the given <b>VPS's IP address</b>, the initial <b>root password</b> and the server's <b>SSH key fingerprints</b>, which you check in step B2. You only need the root password once, in step B2; after step B3, password login is turned off. Never paste it into chats or documents.</li>
+</ul>
+
+<h5 id="tunnel-ssh">B2. Log in with an SSH key</h5>
+
+<p>An SSH key lets your PC log in to the VPS without a password. All of this step runs in <strong>PowerShell on your PC</strong>.</p>
+
+<p>First, create a key. Skip this if you already have one in <code>C:\Users\&lt;you&gt;\.ssh\</code>. Press Enter to accept the default location; a passphrase is recommended. The <code>SHA256:...</code> fingerprint it prints belongs to your new key, so it is supposed to be different from the server's.</p>
+
+<pre><code class="language-powershell">ssh-keygen -t ed25519</code></pre>
+
+<p>Then copy the public key to the VPS:</p>
+
+<pre><code class="language-powershell">Get-Content $env:USERPROFILE\.ssh\id_ed25519.pub | ssh root@VPS_IP "mkdir -p ~/.ssh &amp;&amp; chmod 700 ~/.ssh &amp;&amp; tr -d '\r' &gt;&gt; ~/.ssh/authorized_keys &amp;&amp; chmod 600 ~/.ssh/authorized_keys"</code></pre>
+
+<p>On this first connection, SSH shows the <strong>server's</strong> fingerprint and asks whether to continue. Compare it with the line of the <strong>same type</strong> (ED25519, ECDSA or RSA) in the welcome email. If it matches exactly, type <code>yes</code> and enter the root password from the email. If it doesn't match, type <code>no</code> and don't enter the password: you may not be talking to your server. To see the server's fingerprints before connecting, you can run <code>ssh-keyscan VPS_IP | ssh-keygen -lf -</code>.</p>
+
+<p>Now log in with the key. It should not ask for the root password (it may ask for your key's passphrase). If it does ask for the root password, the key wasn't copied: repeat the previous command.</p>
+
+<pre><code class="language-powershell">ssh root@VPS_IP</code></pre>
+
+<h5 id="tunnel-lockdown">B3. Lock down the VPS</h5>
+
+<p>This step installs updates, turns off password login, allows only ports 22 (SSH) and 443 (HTTPS), and turns on automatic security updates with a reboot at 04:00 when one is needed. Paste the whole block <strong>on the VPS</strong>. It can take a few minutes, and your session stays connected because port 22 is allowed before the firewall turns on.</p>
+
+<pre><code class="language-sh">export DEBIAN_FRONTEND=noninteractive
+apt update &amp;&amp; apt -y full-upgrade
+apt -y install ufw unattended-upgrades
+
+cat &gt; /etc/ssh/sshd_config.d/10-hardening.conf &lt;&lt;'EOF'
+PasswordAuthentication no
+KbdInteractiveAuthentication no
+PermitRootLogin prohibit-password
+EOF
+sshd -t &amp;&amp; systemctl reload ssh
+
+ufw default deny incoming
+ufw default allow outgoing
+ufw allow 22/tcp
+ufw allow 443/tcp
+ufw --force enable
+
+cat &gt; /etc/apt/apt.conf.d/20auto-upgrades &lt;&lt;'EOF'
+APT::Periodic::Update-Package-Lists "1";
+APT::Periodic::Unattended-Upgrade "1";
+EOF
+cat &gt; /etc/apt/apt.conf.d/52automatic-reboot &lt;&lt;'EOF'
+Unattended-Upgrade::Automatic-Reboot "true";
+Unattended-Upgrade::Automatic-Reboot-Time "04:00";
+EOF
+systemctl enable --now unattended-upgrades
+
+sshd -T | grep -E '^(passwordauthentication|permitrootlogin|kbdinteractiveauthentication)'
+ufw status verbose</code></pre>
+
+<p>The last lines should show this (<code>without-password</code> is OpenSSH's other name for "keys only"):</p>
+
+<pre><code class="language-text">permitrootlogin without-password
+passwordauthentication no
+kbdinteractiveauthentication no
+Status: active
+...
+22/tcp     ALLOW IN    Anywhere
+443/tcp    ALLOW IN    Anywhere</code></pre>
+
+<p>Before closing anything, keep this SSH window open and log in again from a <strong>new PowerShell window</strong> with <code>ssh root@VPS_IP</code>. If that works, you can't lock yourself out. If you ever do, your provider's control panel has a console for the server.</p>
+
+<p>Finally, reboot to load any new kernel, log back in after a minute, and check the kernel version against your distribution's security tracker. For example, Debian fixed <a href="https://security-tracker.debian.org/tracker/CVE-2026-98432" target="_blank" rel="noopener noreferrer">CVE-2026-98432</a> in Debian 13 with kernel <code>6.12.113</code>.</p>
+
+<pre><code class="language-sh">reboot</code></pre>
+
+<pre><code class="language-sh">uname -r</code></pre>
+
+<h5 id="tunnel-tailscale">B4. Connect the VPS and your Umbrel with Tailscale</h5>
+
+<p>Tailscale gives the VPS a private, encrypted path to your Umbrel. The connection goes <b>out</b> from your home, so your router needs no open port for it. Nothing public changes in this step.</p>
+
+<ol>
+  <li>Sign up for free at <a href="https://login.tailscale.com" target="_blank" rel="noopener noreferrer"><b>login.tailscale.com</b></a>.</li>
+  <li>On your Umbrel, install the <a href="https://apps.umbrel.com/app/tailscale" target="_blank" rel="noopener noreferrer"><b>Tailscale</b></a> app, open it, and sign in with the <b>same account</b>.</li>
+</ol>
+
+<p>Then add the VPS. On the VPS, run this; <code>tailscale up</code> prints a login link, which you open in your browser to approve the device with the same account:</p>
+
+<pre><code class="language-sh">apt -y install curl
+curl -fsSL https://tailscale.com/install.sh | sh
+tailscale up</code></pre>
+
+<p>Tailscale logins expire after about six months by default, which would silently take your site down. In the Tailscale admin page, under <strong>Machines</strong>, open the <strong>⋯</strong> menu of <b>each</b> device (the VPS and the Umbrel) and choose <strong>Disable key expiry</strong>.</p>
+
+<p>Now test the tunnel. On the VPS, list the devices and note your Umbrel's address, which starts with <code>100.</code>: that is your <code>UMBREL_TS_IP</code>.</p>
+
+<pre><code class="language-sh">tailscale status</code></pre>
+
+<p>Then check that the VPS reaches Castell through the tunnel. It should show <code>subject: CN=SITE</code> and <code>HTTP/2 200</code>:</p>
+
+<pre><code class="language-sh">curl -skv --resolve SITE:8443:UMBREL_TS_IP https://SITE:8443/ -o /dev/null 2&gt;&amp;1 | grep -E 'subject:|HTTP/|Connected to|Failed|timed out'</code></pre>
+
+<h5 id="tunnel-acl">B5. Let the VPS reach only port 8443</h5>
+
+<p>The VPS faces the internet, so treat it as something that could be hacked. A Tailscale access rule makes sure that, even then, it can only reach Castell on your Umbrel and nothing else. Do this <b>before</b> step B6 makes the VPS public.</p>
+
+<p>In the Tailscale admin page, open <strong>Access controls</strong>, replace everything in the JSON editor with this (with your <code>UMBREL_TS_IP</code>), and save. The first rule keeps your own devices working normally; the second lets anything tagged <code>vps</code> reach only port 8443 of your Umbrel.</p>
+
+<pre><code class="language-json">{
+  "tagOwners": {
+    "tag:vps": ["autogroup:admin"]
+  },
+  "acls": [
+    {"action": "accept", "src": ["autogroup:member"], "dst": ["*:*"]},
+    {"action": "accept", "src": ["tag:vps"], "dst": ["UMBREL_TS_IP:8443"]}
+  ]
+}</code></pre>
+
+<p>Then, under <strong>Machines</strong>, open the <strong>⋯</strong> menu of the VPS, choose <strong>Edit ACL tags</strong>, add <code>tag:vps</code> and save. Check that the limit works, on the VPS:</p>
+
+<pre><code class="language-sh">curl -sk -o /dev/null -w 'Castell: %{http_code}\n' --resolve SITE:8443:UMBREL_TS_IP https://SITE:8443/
+curl -s -m 5 -o /dev/null -w 'Umbrel dashboard: %{http_code}\n' http://UMBREL_TS_IP/ || echo "Umbrel dashboard: blocked, good"</code></pre>
+
+<p>You should get <code>Castell: 200</code>, then <code>Umbrel dashboard: 000</code> and <code>blocked, good</code>. <code>000</code> means no answer, which is what you want. If the dashboard line shows any other number, stop: the rule isn't working yet.</p>
+
+<h5 id="tunnel-haproxy">B6. Pass HTTPS through with HAProxy</h5>
+
+<p>HAProxy listens on port 443 of the VPS and sends each connection on to Castell through the tunnel. It runs in <b>TCP mode</b>, so it never decrypts anything. Two things to avoid here: a service that decrypts traffic (Cloudflare Tunnel, Tailscale Funnel) breaks DANE, and plain packet forwarding (iptables DNAT) would pass attackers' raw packets through to your Umbrel's kernel. A proxy opens a fresh connection instead, so those packets stop at the VPS.</p>
+
+<p>On the VPS, paste this block with your <code>UMBREL_TS_IP</code>. It should end with <code>active</code> and <code>Through HAProxy: 200</code>:</p>
+
+<pre><code class="language-sh">apt -y install haproxy
+cp /etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg.original
+
+cat &gt; /etc/haproxy/haproxy.cfg &lt;&lt;'EOF'
+# Passes encrypted traffic to Castell on the Umbrel, without decrypting it.
+global
+    log /dev/log local0
+    user haproxy
+    group haproxy
+    maxconn 2000
+
+defaults
+    mode tcp
+    log global
+    option tcplog
+    timeout connect 5s
+    timeout client 1m
+    timeout server 1m
+
+frontend https_in
+    bind :443
+    default_backend umbrel
+
+backend umbrel
+    server umbrel UMBREL_TS_IP:8443 check
+EOF
+
+haproxy -c -f /etc/haproxy/haproxy.cfg &amp;&amp; systemctl restart haproxy
+systemctl enable haproxy
+sleep 3
+systemctl is-active haproxy
+curl -sk -o /dev/null -w 'Through HAProxy: %{http_code}\n' --resolve SITE:443:127.0.0.1 https://SITE/</code></pre>
+
+<p>Then test from outside, in <strong>PowerShell on your PC</strong>. It should print <code>200</code>. HAProxy passes every name through, so if you have several sites, they all work without any per-site setup on the VPS.</p>
+
+<pre><code class="language-powershell">curl.exe -sk -o NUL -w "%{http_code}\n" --resolve SITE:443:VPS_IP https://SITE/</code></pre>
+
+<h5 id="tunnel-castell">B7. Point your site at the VPS in Castell and Yeil</h5>
+
+<p>In Castell, open <strong>Connection</strong>, choose <strong>VPS tunnel</strong>, set <strong>VPS IP</strong> to your <code>VPS_IP</code>, and save (see image 5). In VPS mode the <strong>Detect</strong> button is hidden, because it finds your home IP, which is no longer the right address.</p>
+
+<p>If you haven't added your site yet, add it now as in Path A: type your TLD, choose <strong>Static website</strong>, and upload your files. Then publish the records at Yeil. The A record now holds your <code>VPS_IP</code>; if you came from Path A, just change the A record's value and leave the TLSA record as it is, since your key hasn't changed.</p>
+
+<table>
+  <thead>
+    <tr><th>Name</th><th>Type</th><th>IPv4 address</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>@</code></td><td><code>A</code></td><td>Your VPS's IP address (<code>VPS_IP</code>)</td></tr>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <tr><th>Name</th><th>Type</th><th>Certificate data (hex)</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>_443._tcp</code></td><td><code>TLSA</code></td><td>The hash string from the TLSA record shown in Castell, without the <code>3 1 1</code> prefix, which Yeil DNS fills in automatically.</td></tr>
+  </tbody>
+</table>
+
+<p>Open your site in Castell and click <strong>Run checks</strong>. All four checks should pass, and the last one should say <strong>Reachable through your VPS, port 443</strong>. If the A check still shows your home IP, the DNS change hasn't reached the nameserver yet: wait a few minutes and run the checks again.</p>
+
+<h5 id="tunnel-close">B8. Close the port on your router (only if you followed Path A)</h5>
+
+<p>If you never opened port 443 on your router, skip this step. Otherwise, this is the step that takes your Umbrel off the internet, so do it last, once the checks in B7 pass.</p>
+
+<ol>
+  <li>In your router, delete or <b>disable</b> the rule you created in Path A (TCP 443 to <code>UMBREL_LAN_IP:8443</code>). Disabling is enough, and easy to undo.</li>
+  <li>Check that your home no longer answers. In <strong>PowerShell on your PC</strong>, run the command below: <code>TcpTestSucceeded : False</code> means the port is closed.</li>
+</ol>
+
+<pre><code class="language-powershell">Test-NetConnection -ComputerName HOME_IP -Port 443</code></pre>
+
+<p>That test runs from inside your network, where some routers behave differently, so confirm from outside too: on a phone with Wi-Fi off, <code>https://HOME_IP</code> should fail to connect, while your site should still load normally in a DANE-capable client such as <a href="fingertip.html"><b>Fingertip</b></a>.</p>
+
+<h5 id="tunnel-redirect">B9. Redirect HTTP to HTTPS</h5>
+
+<p>Visitors who type <code>http://SITE</code> get no answer until you add this redirect. With it, they are sent to <code>https://SITE</code>, keeping the same page. HAProxy answers these requests on the VPS itself, so plain HTTP never goes through the tunnel, and any site you add later gets the redirect too. Everything here runs <strong>on the VPS</strong>.</p>
+
+<p>Back up the config, then add the redirect to the end of it:</p>
+
+<pre><code class="language-sh">cp /etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg.before-http</code></pre>
+
+<pre><code class="language-sh">cat &gt;&gt; /etc/haproxy/haproxy.cfg &lt;&lt;'EOF'
+
+# Plain HTTP: redirect every request to the same name and path over HTTPS.
+# Answered here on the VPS; nothing goes through the tunnel.
+frontend http_in
+    mode http
+    option httplog
+    bind :80
+    timeout client 10s
+    http-request redirect scheme https code 301
+EOF</code></pre>
+
+<p>Check the config and reload HAProxy. <code>RELOADED</code> means the config passed the check and was loaded; if it isn't printed, nothing changed and your site is unaffected, so read the error and fix the config.</p>
+
+<pre><code class="language-sh">haproxy -c -f /etc/haproxy/haproxy.cfg &amp;&amp; systemctl reload haproxy &amp;&amp; echo RELOADED</code></pre>
+
+<p>Open port 80 in the firewall, then test on the VPS. The answer should include <code>HTTP/1.1 301 Moved Permanently</code> and <code>location: https://SITE/test</code>:</p>
+
+<pre><code class="language-sh">ufw allow 80/tcp</code></pre>
+
+<pre><code class="language-sh">curl -sI -H 'Host: SITE' http://127.0.0.1/test | head -3</code></pre>
+
+<p>Finally, test from outside, in <strong>PowerShell on your PC</strong>. It should print <code>301 -&gt; https://SITE/some/page?x=1</code>:</p>
+
+<pre><code class="language-powershell">curl.exe -s -o NUL -w "%{http_code} -&gt; %{redirect_url}\n" -H "Host: SITE" "http://VPS_IP/some/page?x=1"</code></pre>
+
+<p>The first <code>http://</code> request isn't protected by DANE, which only covers HTTPS; that's true of any HTTP-to-HTTPS redirect.</p>
+
+<p>After that, your site should be online at your domain 🎉!</p>
+
+<h5 id="tunnel-maintenance">B10.Keeping it running</h5>
+
+<p>Once set up, the VPS needs no routine work: it installs security updates on its own and reboots at 04:00 when one needs it, and HAProxy and Tailscale start again by themselves. To add another site, add it in Castell, publish its TLSA record and set its A record to your <code>VPS_IP</code>; the VPS needs no changes. Keep your Umbrel's Tailscale app running: if it stops, your sites go offline until it's back.</p>
+
+<table>
+  <thead>
+    <tr><th>What you see</th><th>Likely cause</th><th>What to do</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Castell: "no answer from VPS_IP:443"</td><td>HAProxy stopped, or the tunnel is down</td><td>On the VPS, run <code>systemctl status haproxy</code> and <code>tailscale status</code>; on your Umbrel, check the Tailscale app</td></tr>
+    <tr><td>Castell: "answers with a different certificate"</td><td>Something on the VPS decrypts traffic, or HAProxy points at the wrong address</td><td>Check that <code>haproxy.cfg</code> uses <code>mode tcp</code> and <code>UMBREL_TS_IP:8443</code></td></tr>
+    <tr><td>Your site goes down after about six months</td><td>A Tailscale key expired</td><td>Disable key expiry for both machines (B4) and reconnect with <code>tailscale up</code></td></tr>
+    <tr><td>SSH from your PC is refused</td><td>The key is missing or changed on your PC</td><td>Log in through your provider's web console and add the key to <code>~/.ssh/authorized_keys</code> again</td></tr>
+    <tr><td>SSH warns that the host key changed</td><td>The VPS was reinstalled, or something is in between</td><td>Compare with your provider's fingerprints before trusting it (B2)</td></tr>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <tr><th>To undo</th><th>Do this</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>The HTTP redirect</td><td>On the VPS: <code>cp /etc/haproxy/haproxy.cfg.before-http /etc/haproxy/haproxy.cfg &amp;&amp; systemctl reload haproxy</code>, then <code>ufw delete allow 80/tcp</code></td></tr>
+    <tr><td>The whole VPS path, back to Path A</td><td>Re-enable the router rule, set the A record back to <code>HOME_IP</code>, choose <strong>Router port forward</strong> in Castell, then run the checks</td></tr>
+    <tr><td>HAProxy's config</td><td>On the VPS: <code>cp /etc/haproxy/haproxy.cfg.original /etc/haproxy/haproxy.cfg &amp;&amp; systemctl restart haproxy</code></td></tr>
+  </tbody>
+</table>
 
 </div>
 

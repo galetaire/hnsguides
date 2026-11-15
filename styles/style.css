@@ -129,6 +129,11 @@ h3 {
   margin-bottom: 12px;
 }
 
+.guide h5 {
+  margin: 28px 0 10px;
+  font-size: 1.05em;
+}
+
 p {
   color: var(--text);
 }
@@ -930,6 +935,11 @@ td a:hover {
 
 .faucet-status.error {
   color: #dc2626;
+}
+
+/* Extra space between long bullet points in guides */
+.guide ul.spaced li + li {
+  margin-top: 12px;
 }
 
 /* Mobile Responsiveness */

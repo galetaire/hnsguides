@@ -47,6 +47,7 @@
     <li><a href="#connect-bob-yeil">3. Connect your domain: Bob Wallet ↔ Yeil</a></li>
     <li><a href="#configure-github">4. Configure GitHub</a></li>
     <li><a href="#connect-yeil-github">5. Set your domain: Yeil ↔ GitHub</a></li>
+    <li><a href="#connect-vercel">6. Keep your repository private with Vercel</a></li>
   </ul>
 </nav>
 
@@ -148,9 +149,30 @@
 
 <pre><code>http://hi.yourdomain/</code></pre>
 
+<h3 id="connect-vercel">6. Keep your repository private with Vercel</h3>
+
+<p>This last step is optional, and requires a free Vercel account. It's for when you want your site to stay online over HTTP while keeping its GitHub repository private. On GitHub's free plan, GitHub Pages only works with public repositories. If you make your repository private, your site goes offline. Vercel solves this: it reads your repository directly (even a private one) and serves the site itself, so the code can stay private while the site stays online.</p>
+
+<p><b>How it works, in short:</b> you connect GitHub to Vercel, import your website repository, add your domain in Vercel, and then add the DNS records Vercel gives you on Yeil DNS. From then on, Vercel serves your site. Each time you push changes to GitHub, Vercel updates the site automatically.</p>
+
+<div class="window">
+  <div class="window-bar">▲ Deploying your site on Vercel</div>
+  <div class="collage">
+    <a class="collage-item wide" href="images/vercel1.png"><img src="images/vercel1.png" alt="Create a new project" loading="lazy"><span class="collage-caption"><b>1</b> Create a new project in your Vercel account</span></a>
+    <a class="collage-item" href="images/vercel2.png"><img src="images/vercel2.png" alt="Import your website repository" loading="lazy"><span class="collage-caption"><b>2</b> Import your website repository from GitHub</span></a>
+    <a class="collage-item tall" href="images/vercel3.png"><img src="images/vercel3.png" alt="Deploy your project" loading="lazy"><span class="collage-caption"><b>3</b> Click "Import", once deployed then "Continue to Project"</span></a>
+    <a class="collage-item" href="images/vercel4.png"><img src="images/vercel4.png" alt="Manage domains" loading="lazy"><span class="collage-caption"><b>4</b> Go to "Manage Domains"</span></a>
+    <a class="collage-item" href="images/vercel5.png"><img src="images/vercel5.png" alt="Add your domain" loading="lazy"><span class="collage-caption"><b>5</b> Add your domain. As with GitHub Pages, it must be a second-level domain (SLD); a bare TLD won't work</span></a>
+    <a class="collage-item wide" href="images/vercel6.png"><img src="images/vercel6.png" alt="Check the DNS records" loading="lazy"><span class="collage-caption"><b>6</b> Open the DNS records Vercel asks you to add</span></a>
+    <a class="collage-item wide" href="images/vercel7.png"><img src="images/vercel7.png" alt="Add the DNS records on your nameserver" loading="lazy"><span class="collage-caption"><b>7</b> Add the A records on Yeil, or whichever nameserver you use</span></a>
+    <a class="collage-item" href="images/vercel8.png"><img src="images/vercel8.png" alt="Your site is online" loading="lazy"><span class="collage-caption"><b>8</b> Once the records propagate, your site will be online, and you can make your GitHub repository private</span></a>
+  </div>
+</div>
+
 <blockquote>
-  <p><b>Note:</b> To resolve the Handshake DNS protocol, you will need a resolver, since browsers do not support it natively. Consider using <a href="fingertip.html"><b>Fingertip</b></a>. Namebase wallet includes a resolver you can activate too. You can check my site to know if your resolver works <a href="https://just.belikebill" target="_blank" rel="noopener noreferrer">https://just.belikebill</a>.</p>
+<p><b>Tip:</b> if your site is plain HTML (no build tools), set <b>Framework Preset</b> to <b>Other</b> when importing. If you later see a <code>404: NOT_FOUND</code> page, go to <b>Settings → Build &amp; Deployment</b>, set the <b>Output Directory</b> to <code>.</code> (a single dot), and redeploy.</p>
 </blockquote>
+
 </div>
 
 <!-- Footer-->

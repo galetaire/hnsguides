@@ -36,7 +36,7 @@
 <h2>How to resolve Handshake names on the internet</h2>
 
 <blockquote>
-  <p><b>Note:</b> The original <a href="https://github.com/imperviousinc/fingertip" target="_blank" rel="noopener noreferrer"><strong>Fingertip</strong></a>, by <a href="https://impervious.com/fingertip" target="_blank" rel="noopener noreferrer"><strong>Impervious Inc.</strong></a>, is no longer maintained. For this guide, I'll be using my personal fork, <a href="https://github.com/galetaire/fingertip-dit" target="_blank" rel="noopener noreferrer"><strong>Fingertip-dit</strong></a>, available for Windows and Linux. I'm not a macOS user, but feel free to fork the project or let me know if you'd like a macOS version.</p>
+  <p><b>Note:</b> The original <a href="https://github.com/imperviousinc/fingertip" target="_blank" rel="noopener noreferrer"><strong>Fingertip</strong></a>, by <a href="https://impervious.com/fingertip" target="_blank" rel="noopener noreferrer"><strong>Impervious Inc.</strong></a>, is no longer maintained. For this guide, I'll be using my personal fork, <a href="https://github.com/galetaire/fingertip-dit" target="_blank" rel="noopener noreferrer"><strong>Fingertip-dit</strong></a>, available for Windows, Linux and macOS. Feel free to fork the project, and don't hesitate to share any comments or suggestions.</p>
 </blockquote>
 
 <nav class="toc" aria-label="On this page">
@@ -47,6 +47,7 @@
       <ul>
         <li><a href="#windows">Windows</a></li>
         <li><a href="#linux">Linux (x86_64)</a></li>
+        <li><a href="#apple">MacOS</a></li>
         <li><a href="#issues">Common issues</a></li>
       </ul>
     </li>
@@ -57,7 +58,7 @@
 <h3 id="what-you-need">0. What you need</h3>
 
 <ul>
-  <li>A computer running Windows or Linux.</li>
+  <li>A computer running Windows, Linux or macOS.</li>
   <li><a href="https://github.com/galetaire/fingertip-dit/releases" target="_blank" rel="noopener noreferrer"><strong>Fingertip-dit</strong></a> for your OS, downloads are available on the releases page.</li>
   <li>A web browser, preferably Firefox.</li>
 </ul>
@@ -118,6 +119,26 @@
   </div>
 </div>
 
+<h4 id="apple">macOS 🍎</h4>
+
+<p>Open <code>Fingertip-dit-0.0.4.dmg</code> and drag <strong>Fingertip-dit</strong> to Applications.</p>
+
+<ul>
+  <li><strong>macOS blocks it on first open.</strong> The app isn't signed with an Apple developer
+    identity (Impervious's signature can't survive the hnsd swap), so right-click &rarr; Open
+    gives "cannot be opened". Go to <strong>System Settings &rarr; Privacy &amp; Security</strong> and click
+    <strong>Open Anyway</strong>.</li>
+  <li><strong>Intel build.</strong> Impervious only built <code>fingertip</code> for Intel, so this package is Intel
+    too. On Apple Silicon it runs under Rosetta&nbsp;2, which macOS offers to install on first
+    launch. Needs macOS 10.13 or newer.</li>
+  <li>Fingertip's <strong>Auto configure</strong> sets the system auto-proxy URL and adds its certificate
+    to your login keychain, like 0.0.3 did.</li>
+  <li><code>hnsd</code> saves its headers in <code>~/Library/Application Support/Fingertip-dit/hnsd-data</code>.</li>
+</ul>
+
+<p>On first start, lookups fail for about 2 minutes while <code>hnsd</code> syncs from its checkpoint.
+After that, names resolve.</p>
+
 <h4 id="issues">Common issues 🪛</h4>
 
 <p>Is your issue not covered by any of the ones below? Feel free to send me an email or summon/DM me on <a href="https://discord.gg/DpgpU6d5Fz" target="_blank" rel="noopener noreferrer"><strong>Discord</strong></a> (@galetaire).</p>
@@ -167,7 +188,7 @@ X-GNOME-Autostart-Delay=5</code></pre>
 
 <h3 id="uninstalling">2. Uninstalling Fingertip</h3>
 
-<p>If you ever want to fully uninstall Fingertip-dit, cleaning all files from your system, there's a step-by-step guide, both for Windows and Linux, in the project's <a href="https://github.com/galetaire/fingertip-dit#uninstall" target="_blank" rel="noopener noreferrer">README</a>.</p>
+<p>If you ever want to fully uninstall Fingertip-dit, cleaning all files from your system, there's a step-by-step guide, both for Windows, Linux and macOS, in the project's <a href="https://github.com/galetaire/fingertip-dit#uninstall" target="_blank" rel="noopener noreferrer">README</a>.</p>
 </div>
 <!-- Footer-->
 <div id="footer">
