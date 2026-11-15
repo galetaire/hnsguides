@@ -12,8 +12,6 @@
   --radius-sm: 10px;
   --shadow-sm: 0 1px 2px rgba(15, 17, 21, 0.04), 0 1px 3px rgba(15, 17, 21, 0.06);
   --shadow-md: 0 4px 12px rgba(15, 17, 21, 0.08);
-  --brand-nostr: #7c3aed;
-  --brand-primal: #b91c1c;
   color-scheme: light dark;
 }
 
@@ -30,8 +28,6 @@
     --border: #2a2e37;
     --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3), 0 1px 3px rgba(0, 0, 0, 0.35);
     --shadow-md: 0 6px 16px rgba(0, 0, 0, 0.4);
-    --brand-nostr: #c084fc;
-    --brand-primal: #f87171;
   }
 }
 
@@ -48,8 +44,6 @@ html[data-theme="light"] {
   --border: #e5e7eb;
   --shadow-sm: 0 1px 2px rgba(15, 17, 21, 0.04), 0 1px 3px rgba(15, 17, 21, 0.06);
   --shadow-md: 0 4px 12px rgba(15, 17, 21, 0.08);
-  --brand-nostr: #7c3aed;
-  --brand-primal: #b91c1c;
 }
 
 html[data-theme="dark"] {
@@ -64,8 +58,6 @@ html[data-theme="dark"] {
   --border: #2a2e37;
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3), 0 1px 3px rgba(0, 0, 0, 0.35);
   --shadow-md: 0 6px 16px rgba(0, 0, 0, 0.4);
-  --brand-nostr: #c084fc;
-  --brand-primal: #f87171;
 }
 
 * {
@@ -171,158 +163,6 @@ hr {
   margin: 32px 0;
 }
 
-#title {
-  text-align: left;
-  padding: 30px 0;
-  font-size: 28px;
-  letter-spacing: -0.01em;
-  color: var(--text);
-}
-
-#legend {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-  padding: 0 10px 10px;
-  font-size: 12px;
-}
-
-#legend .item {
-  line-height: 12px;
-  padding: 0 10px 0 4px;
-}
-
-#legend .item.male {
-  border-left: 12px solid #19A0AA;
-}
-
-#legend .item.female {
-  border-left: 12px solid #F15F36;
-}
-
-.chart-wrapper {
-  width: 100%;
-  max-width: 100%;
-  overflow-x: auto;
-}
-
-/* Wider content pages (chart-heavy) */
-body.wide {
-  max-width: 920px;
-}
-
-.page-subtitle {
-  display: block;
-  margin-top: 10px;
-  color: var(--text-muted);
-  font-size: 14px;
-}
-
-/* Chapter index (market.html table of contents) */
-.index {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-sm);
-  padding: 20px 24px;
-}
-
-.index ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.index > ul > li {
-  font-weight: 700;
-  margin-top: 14px;
-}
-
-.index > ul > li:first-child {
-  margin-top: 0;
-}
-
-.index ul ul {
-  margin: 6px 0 6px 8px;
-  padding-left: 16px;
-  border-left: 1px solid var(--border);
-}
-
-.index ul ul li {
-  font-weight: 400;
-  font-size: 14px;
-  padding: 4px 0;
-}
-
-/* Chapters / chart subsections (market.html) */
-.section {
-  margin: 40px 0;
-}
-
-.section > h2 {
-  padding-bottom: 12px;
-  border-bottom: 1px solid var(--border);
-}
-
-.subsection {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-sm);
-  padding: 20px 24px;
-  margin: 20px 0;
-}
-
-.subsection h3 {
-  margin-top: 0;
-}
-
-.subsection small {
-  display: block;
-  margin-top: 8px;
-}
-
-/* Two column layout (fonts.html) */
-.two-column-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  padding: 0;
-  margin: 20px 0;
-}
-
-.two-column-container .column {
-  flex: 1 1 260px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-sm);
-  padding: 20px 24px;
-}
-
-.two-column-container .column > li {
-  list-style: none;
-  font-weight: 700;
-  margin-top: 14px;
-}
-
-.two-column-container .column > li:first-child {
-  margin-top: 0;
-}
-
-.two-column-container ul {
-  list-style: none;
-  margin: 6px 0 6px 8px;
-  padding-left: 16px;
-  border-left: 1px solid var(--border);
-}
-
-.two-column-container ul li {
-  font-weight: 400;
-  font-size: 14px;
-  padding: 4px 0;
-}
-
 #footer {
   text-align: center;
   font-size: 13px;
@@ -341,15 +181,6 @@ body.wide {
 
 #footer a:hover {
   color: var(--accent);
-}
-
-/* Cards / sections */
-.card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-sm);
-  padding: 24px;
 }
 
 .intro {
@@ -436,30 +267,8 @@ td a:hover {
   font-size: 15px;
 }
 
-.contact-list .signature {
-  color: var(--text-muted);
-  font-size: 13px;
-}
-
 .icon-inline {
   vertical-align: middle;
-}
-
-#map {
-  height: 50vh;
-  background: var(--surface-2);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  overflow: hidden;
-  margin: 20px 0;
-}
-
-.brand-nostr {
-  color: var(--brand-nostr);
-}
-
-.brand-primal {
-  color: var(--brand-primal);
 }
 
 /* Navbar */
@@ -474,7 +283,13 @@ td a:hover {
   margin-bottom: 24px;
 }
 
+.navbar a:link,
+.navbar a:visited,
 .navbar button {
+  display: inline-block;
+  line-height: normal;
+  text-decoration: none;
+  background-image: none;
   background-color: var(--surface);
   color: var(--text);
   border: 1px solid var(--border);
@@ -486,13 +301,16 @@ td a:hover {
   font-family: 'Roboto', sans-serif;
 }
 
+.navbar a:hover,
 .navbar button:hover {
+  color: var(--text);
   background-color: var(--bg);
   border-color: var(--accent);
   transform: translateY(-1px);
   box-shadow: var(--shadow-sm);
 }
 
+.navbar a:active,
 .navbar button:active {
   transform: translateY(0);
 }
@@ -507,12 +325,6 @@ td a:hover {
   justify-content: center;
   font-size: 16px;
   line-height: 1;
-}
-
-.signature {
-  word-break: break-all;
-  white-space: normal;
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
 /* Long-form guides (github.html) */
@@ -629,15 +441,6 @@ td a:hover {
   color: var(--text-muted);
   background: var(--surface-2);
   border-bottom: 1px solid var(--border);
-}
-
-.window-dots {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: #ff5f57;
-  box-shadow: 16px 0 0 #febc2e, 32px 0 0 #28c840;
-  margin-right: 32px;
 }
 
 .collage {
@@ -859,19 +662,6 @@ td a:hover {
   font-size: 12px;
 }
 
-.faucet-form .faucet-consent {
-  display: flex;
-  align-items: flex-start;
-  gap: 8px;
-  margin-top: 14px;
-  font-weight: 400;
-  color: var(--text-muted);
-}
-
-.faucet-form .faucet-consent input {
-  margin-top: 5px;
-}
-
 .faucet-trap {
   display: none;
 }
@@ -978,6 +768,8 @@ td a:hover {
     justify-content: flex-start;
   }
 
+  .navbar a:link,
+  .navbar a:visited,
   .navbar button {
     font-size: 14px;
     padding: 8px 14px;
@@ -991,19 +783,5 @@ td a:hover {
   th,
   td {
     padding: 8px 12px;
-  }
-
-  #title {
-    font-size: 24px;
-  }
-
-  .index,
-  .subsection,
-  .two-column-container .column {
-    padding: 16px 18px;
-  }
-
-  .two-column-container {
-    flex-direction: column;
   }
 }

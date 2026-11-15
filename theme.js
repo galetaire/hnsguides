@@ -18,7 +18,8 @@
   window.toggleTheme = function () {
     var next = currentTheme() === 'dark' ? 'light' : 'dark';
     root.setAttribute('data-theme', next);
-    localStorage.setItem('theme', next);
+    // Remembering the choice is optional: some private modes block storage.
+    try { localStorage.setItem('theme', next); } catch (e) {}
     updateButton();
   };
 

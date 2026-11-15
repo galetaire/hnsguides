@@ -38,7 +38,10 @@
     return fetch(COUNTER_URL + '/' + action + '/' + COUNTER_KEY).then(function (response) {
       if (response.status === 404) return 0;
       if (!response.ok) throw new Error('Counter unavailable');
-      return response.json().then(function (result) { return result.value; });
+      return response.json().then(function (result) {
+        if (typeof result.value !== 'number') throw new Error('Unexpected counter value');
+        return result.value;
+      });
     });
   }
 
