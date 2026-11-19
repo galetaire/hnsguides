@@ -271,8 +271,8 @@ td a:hover {
   vertical-align: middle;
 }
 
-/* Home page header: title and theme toggle, no menu */
-.home-header {
+/* Site header on every page: title on the left, theme toggle on the right */
+.site-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -282,72 +282,38 @@ td a:hover {
   border-bottom: 1px solid var(--border);
 }
 
-.home-header h1 {
+.site-header h1 {
   margin: 0;
 }
 
-.home-header .theme-toggle {
+.theme-toggle {
   flex-shrink: 0;
-}
-
-/* Guide pages' top bar: back to the cards, and the theme toggle */
-.page-bar {
-  padding: 10px 0;
-  display: flex;
-  justify-content: space-between;
+  display: inline-flex;
   align-items: center;
-  gap: 8px;
-  border-bottom: 1px solid var(--border);
-  margin-bottom: 24px;
-}
-
-.page-bar a:link,
-.page-bar a:visited,
-.page-bar button,
-.home-header .theme-toggle {
-  display: inline-block;
-  line-height: normal;
-  text-decoration: none;
-  background-image: none;
-  background-color: var(--surface);
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  line-height: 1;
   color: var(--text);
+  background-color: var(--surface);
   border: 1px solid var(--border);
-  padding: 9px 16px;
   border-radius: 999px;
   cursor: pointer;
   transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
-  font-size: 15px;
-  font-family: 'Roboto', sans-serif;
 }
 
-.page-bar a:hover,
-.page-bar button:hover,
-.home-header .theme-toggle:hover {
-  color: var(--text);
+.theme-toggle:hover {
   background-color: var(--bg);
   border-color: var(--accent);
   transform: translateY(-1px);
   box-shadow: var(--shadow-sm);
 }
 
-.page-bar a:active,
-.page-bar button:active,
-.home-header .theme-toggle:active {
+.theme-toggle:active {
   transform: translateY(0);
-}
-
-/* More specific than the shared top bar rules, so the toggle stays a centred circle at every width. */
-.page-bar .theme-toggle,
-.home-header .theme-toggle {
-  margin-left: auto;
-  width: 38px;
-  height: 38px;
-  padding: 0;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 16px;
-  line-height: 1;
 }
 
 /* Long-form guides (github.html) */
@@ -965,14 +931,6 @@ html[data-theme="dark"] img[src$="vercel-mark.png"] {
   .intro img {
     width: 96px;
     height: 96px;
-  }
-
-  .page-bar a:link,
-  .page-bar a:visited,
-  .page-bar button {
-    font-size: 14px;
-    padding: 8px 14px;
-    width: auto;
   }
 
   .more-guides-links {

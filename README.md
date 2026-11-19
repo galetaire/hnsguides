@@ -13,7 +13,7 @@
 
 ## Credits
 
-This site is only possible thanks to the great numbers of contributors for Handshake and the open source software overall. The layour guide is greatly inspired by https://htools.work/ by Rithvik Vibhu.
+This site is only possible thanks to the great numbers of contributors for Handshake and the open source software overall. The layout guide is greatly inspired by https://htools.work/ by Rithvik Vibhu.
 
 ## Contact
 
