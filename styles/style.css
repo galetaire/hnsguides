@@ -860,14 +860,18 @@ td a:hover {
 .card-yeil { --from: #3d3a33; --to: #9a917e; }
 .card-castell { --from: #2e1d10; --to: #6e4626; }
 .card-faucet { --from: #0b6f8a; --to: #3fc6df; }
+.card-dit { --from: #57d3b8; --to: #c4f2e6; }
+.card-namebase { --from: #ffb21e; --to: #1f7bf2; }
 
-/* The GitHub mark is black: show it white on dark backgrounds */
-html[data-theme="dark"] img[src$="github-mark.svg"] {
+/* The GitHub and Vercel marks are black: show them white on dark backgrounds */
+html[data-theme="dark"] img[src$="github-mark.svg"],
+html[data-theme="dark"] img[src$="vercel-mark.png"] {
   filter: invert(1);
 }
 
 @media (prefers-color-scheme: dark) {
-  html:not([data-theme="light"]) img[src$="github-mark.svg"] {
+  html:not([data-theme="light"]) img[src$="github-mark.svg"],
+  html:not([data-theme="light"]) img[src$="vercel-mark.png"] {
     filter: invert(1);
   }
 }
