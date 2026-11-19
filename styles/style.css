@@ -290,21 +290,20 @@ td a:hover {
   flex-shrink: 0;
 }
 
-/* Navbar */
-.navbar {
+/* Guide pages' top bar: back to the cards, and the theme toggle */
+.page-bar {
   padding: 10px 0;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
   gap: 8px;
   border-bottom: 1px solid var(--border);
   margin-bottom: 24px;
 }
 
-.navbar a:link,
-.navbar a:visited,
-.navbar button,
+.page-bar a:link,
+.page-bar a:visited,
+.page-bar button,
 .home-header .theme-toggle {
   display: inline-block;
   line-height: normal;
@@ -321,8 +320,8 @@ td a:hover {
   font-family: 'Roboto', sans-serif;
 }
 
-.navbar a:hover,
-.navbar button:hover,
+.page-bar a:hover,
+.page-bar button:hover,
 .home-header .theme-toggle:hover {
   color: var(--text);
   background-color: var(--bg);
@@ -331,14 +330,14 @@ td a:hover {
   box-shadow: var(--shadow-sm);
 }
 
-.navbar a:active,
-.navbar button:active,
+.page-bar a:active,
+.page-bar button:active,
 .home-header .theme-toggle:active {
   transform: translateY(0);
 }
 
-/* More specific than the shared navbar button rules, so the toggle stays a centred circle at every width. */
-.navbar .theme-toggle,
+/* More specific than the shared top bar rules, so the toggle stays a centred circle at every width. */
+.page-bar .theme-toggle,
 .home-header .theme-toggle {
   margin-left: auto;
   width: 38px;
@@ -876,6 +875,68 @@ html[data-theme="dark"] img[src$="vercel-mark.png"] {
   }
 }
 
+/* Previous and next guide, at the end of each guide */
+.more-guides {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+}
+
+.more-guides h2 {
+  margin: 0 0 12px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.more-guides-links {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.more-guide:link,
+.more-guide:visited {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px 16px;
+  color: var(--text);
+  background: var(--surface);
+  background-image: none;
+  border: 2px solid var(--border);
+  border-radius: var(--radius-sm);
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.more-guide:hover,
+.more-guide:focus-visible {
+  color: var(--text);
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.more-guide.next {
+  align-items: flex-end;
+  text-align: right;
+}
+
+.more-label {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.more-name {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.more-name .icon-inline {
+  margin-right: 4px;
+}
+
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
   html {
@@ -906,18 +967,16 @@ html[data-theme="dark"] img[src$="vercel-mark.png"] {
     height: 96px;
   }
 
-  .navbar {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-  }
-
-  .navbar a:link,
-  .navbar a:visited,
-  .navbar button {
+  .page-bar a:link,
+  .page-bar a:visited,
+  .page-bar button {
     font-size: 14px;
     padding: 8px 14px;
     width: auto;
+  }
+
+  .more-guides-links {
+    grid-template-columns: 1fr;
   }
 
   table {

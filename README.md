@@ -11,6 +11,10 @@
 
 > **Note:** I do not recommend crypto investment whatsoever. Skepticism around blockchain projects is more often right than wrong, but I consider HNS DNS to be a decent exception, and a valid alternative to ICANN DNS.
 
+## Credits
+
+This site is only possible thanks to the great numbers of contributors for Handshake and the open source software overall. The layour guide is greatly inspired by https://htools.work/ by Rithvik Vibhu.
+
 ## Contact
 
 If you have any question or have encountered any difficulty you can reach by email at `spainhousing@yeilmail.com`.
