@@ -15,29 +15,53 @@
       <title>Handshake functional guide</title>
 </head>
 <body>
-<h1><a class="home-link" href="index.html"> A functional guide for Handshake users</a></h1>
-<div class="navbar">
-  <a href="fingertip.html"><img src="images/fingertip-mark.png" class="icon-inline" width="18" alt=""> Fingertip</a>
-  <a href="bobwallet.html"><img src="images/bob-mark.png" class="icon-inline" width="18" alt=""> Bob wallet</a>
-  <a href="finestra.html"><img src="images/finestra-mark.png" class="icon-inline" width="18" alt=""> Finestra</a>
-  <a href="yeil.html"><img src="images/yeil-mark.png" class="icon-inline" width="20" alt=""> Yeil DNS</a>
-  <a href="castell.html"><img src="images/castell-mark.png" class="icon-inline" width="18" alt=""> Castell</a>
-  <a href="faucet.html"><img src="images/faucet-mark.png" class="icon-inline" width="18" alt=""> Coins faucet</a>
+<header class="home-header">
+  <h1><a class="home-link" href="index.html"> A functional guide for Handshake users</a></h1>
   <button id="theme-toggle" class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">🌙</button>
-</div>
+</header>
 
 <div class="intro">
   <img src="images/handshake-mark.png" alt="Handshake">
   <p><a href="https://handshake.org/" target="_blank" rel="noopener noreferrer"><b>Handshake</b></a> is an alternative DNS system. This site is a practical onboarding guide for using Handshake in an approachable, self-hosted and sovereign way, from resolving names to serving a static site over HTTPS.</p>
 </div>
 
-<ul class="contact-list">
-  <li><img src="images/fingertip-mark.png" class="icon-inline" width="18" alt=""><a href="fingertip.html"><b>Fingertip</b></a>Resolve Handshake addresses</li>
-  <li><img src="images/bob-mark.png" class="icon-inline" width="18" alt=""> <a href="bobwallet.html"><b>Bob Wallet</b></a>Store and manage your names on your PC or <a href="https://umbrel.com/" target="_blank" rel="noopener noreferrer"><b>Umbrel</b></a> <img src="images/umbrel-mark.png" class="icon-inline" width="18" alt=""></li>
-  <li><img src="images/finestra-mark.png" class="icon-inline" width="18" alt=""> <a href="finestra.html"><b>Finestra</b></a>A self-hosted explorer for your <a href="https://umbrel.com/" target="_blank" rel="noopener noreferrer"><b>Umbrel</b></a> <img src="images/umbrel-mark.png" class="icon-inline" width="18" alt=""></li>
-  <li><img src="images/yeil-mark.png" class="icon-inline" width="20" alt=""> <a href="yeil.html"><b>Yeil DNS</b></a> Host an http site on<a href="https://github.com/" target="_blank" rel="noopener noreferrer"><b>GitHub Pages</b></a> <img src="images/github-mark.svg" class="icon-inline" width="18" alt=""></li>
-  <li><img src="images/castell-mark.png" class="icon-inline" width="18" alt=""> <a href="castell.html"><b>Castell</b> </a>Host a static https+DANE site on your <a href="https://umbrel.com/" target="_blank" rel="noopener noreferrer"><b>Umbrel</b></a> <img src="images/umbrel-mark.png" class="icon-inline" width="18" alt=""></li>
-  <li><img src="images/faucet-mark.png" class="icon-inline" width="18" alt=""> <a href="faucet.html"><b>Coins faucet</b></a>Get a small amount of Handshake coins to get started</li>
+<ul class="guide-cards">
+  <li class="guide-card card-fingertip">
+    <h2><span class="card-number">#1</span> <a class="card-link" href="fingertip.html">Fingertip</a></h2>
+    <span class="card-page">fingertip.html</span>
+    <div class="card-banner"><img class="card-logo" src="images/fingertip-mark.png" alt="" width="64" height="64"></div>
+    <p>Resolve Handshake addresses</p>
+  </li>
+  <li class="guide-card card-bob">
+    <h2><span class="card-number">#2</span> <a class="card-link" href="bobwallet.html">Bob Wallet</a></h2>
+    <span class="card-page">bobwallet.html</span>
+    <div class="card-banner"><img class="card-logo" src="images/bob-mark.png" alt="" width="64" height="64"></div>
+    <p>Store and manage your names on your PC or <a href="https://umbrel.com/" target="_blank" rel="noopener noreferrer"><b>Umbrel</b></a> <img src="images/umbrel-mark.png" class="icon-inline" width="18" alt=""></p>
+  </li>
+  <li class="guide-card card-finestra">
+    <h2><span class="card-number">#3</span> <a class="card-link" href="finestra.html">Finestra</a></h2>
+    <span class="card-page">finestra.html</span>
+    <div class="card-banner"><img class="card-logo" src="images/finestra-mark.png" alt="" width="64" height="64"></div>
+    <p>A self-hosted explorer for your <a href="https://umbrel.com/" target="_blank" rel="noopener noreferrer"><b>Umbrel</b></a> <img src="images/umbrel-mark.png" class="icon-inline" width="18" alt=""></p>
+  </li>
+  <li class="guide-card card-yeil">
+    <h2><span class="card-number">#4</span> <a class="card-link" href="yeil.html">Yeil DNS</a></h2>
+    <span class="card-page">yeil.html</span>
+    <div class="card-banner"><img class="card-logo" src="images/yeil-mark.png" alt="" width="64" height="64"></div>
+    <p>Host an http site on <a href="https://github.com/" target="_blank" rel="noopener noreferrer"><b>GitHub Pages</b></a> <img src="images/github-mark.svg" class="icon-inline" width="18" alt=""></p>
+  </li>
+  <li class="guide-card card-castell">
+    <h2><span class="card-number">#5</span> <a class="card-link" href="castell.html">Castell</a></h2>
+    <span class="card-page">castell.html</span>
+    <div class="card-banner"><img class="card-logo" src="images/castell-mark.png" alt="" width="64" height="64"></div>
+    <p>Host a static https+DANE site on your <a href="https://umbrel.com/" target="_blank" rel="noopener noreferrer"><b>Umbrel</b></a> <img src="images/umbrel-mark.png" class="icon-inline" width="18" alt=""></p>
+  </li>
+  <li class="guide-card card-faucet">
+    <h2><span class="card-number">#6</span> <a class="card-link" href="faucet.html">Coins faucet</a></h2>
+    <span class="card-page">faucet.html</span>
+    <div class="card-banner"><img class="card-logo" src="images/faucet-mark.png" alt="" width="64" height="64"></div>
+    <p>Get a small amount of Handshake coins to get started</p>
+  </li>
 </ul>
 <!-- Footer-->
 <div id="footer">

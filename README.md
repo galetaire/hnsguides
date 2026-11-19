@@ -1,4 +1,4 @@
-# How-to guides for Handshake users
+# How-to guides for Handshake users 🤝
 
 [Handshake](https://handshake.org/) is an experimental DNS root zone built on a peer-to-peer (P2P) blockchain. In short, it’s an alternative DNS. This repo collects practical onboarding guides for using Handshake in an approachable, self-hosted and sovereign way, from resolving names to serving a static site over HTTPS.
 
