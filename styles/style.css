@@ -827,6 +827,7 @@ td a:hover {
 .card-faucet { --from: #0b6f8a; --to: #3fc6df; }
 .card-dit { --from: #57d3b8; --to: #c4f2e6; }
 .card-namebase { --from: #ffb21e; --to: #1f7bf2; }
+.card-shakeportal { --from: #13325c; --to: #45cfa9; }
 
 /* The GitHub and Vercel marks are black: show them white on dark backgrounds */
 html[data-theme="dark"] img[src$="github-mark.svg"],
