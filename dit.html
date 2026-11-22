@@ -11,7 +11,7 @@
       <meta property="og:image" content="https://raw.githubusercontent.com/galetaire/galetaireID/refs/heads/main/public/favicon.ico">
       <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
       <link href="https://fonts.googleapis.com/css?family=Questrial" rel="stylesheet" type="text/css">
-      <link href="styles/style.css?v=20261121" rel="stylesheet" type="text/css">
+      <link href="styles/style.css?v=20261122" rel="stylesheet" type="text/css">
       <title>Dit - Handshake functional guide</title>
 </head>
 <body>
@@ -22,22 +22,148 @@
 
 <div class="intro">
   <img src="images/dit-mark.png" alt="Dit">
-  <p>Description coming soon.</p>
+  <p><b>Dit</b> is a self-hosted <b>Handshake</b> resolver that runs on your <b>Umbrel</b>. Point your router at it to cover your whole local network, or point just your phone or another single device at it.</p>
 </div>
 
 <div class="guide">
-<h2>Dit guide</h2>
+<h2>How to resolve Handshake names from your Umbrel</h2>
+
+<blockquote>
+  <p><b>Note:</b> <a href="https://umbrel.com/umbrelos" target="_blank" rel="noopener noreferrer"><b>UmbrelOS</b></a> is an open-source, Debian-based operating system designed to turn a computer, mini PC, Raspberry Pi or server into a user-friendly personal cloud and self-hosting hub. Its key features are a simple web interface easy to manage from your browser, and a plentiful <a href="https://apps.umbrel.com/" target="_blank" rel="noopener noreferrer"><b>App Store</b></a>.</p>
+</blockquote>
 
 <nav class="toc" aria-label="On this page">
   <b>On this page</b>
   <ul>
     <li><a href="#what-you-need">0. What you need</a></li>
+    <li><a href="#installing-dit">1. Installing Dit</a></li>
+    <li><a href="#configuration">2. Set up devices</a></li>
+    <li><a href="#secure-sites">3. Resolve sites with DANE</a></li>
+    <li><a href="#secure-sites-sane">4. Resolve sites with Stateless DANE (SANE)</a></li>
   </ul>
 </nav>
 
 <h3 id="what-you-need">0. What you need</h3>
 
-<p><small>This guide is a work in progress, more steps coming soon.</small></p>
+<ul>
+  <li>A computer running <a href="https://umbrel.com/umbrelos" target="_blank" rel="noopener noreferrer"><b>UmbrelOS</b></a>, with <a href="https://github.com/galetaire/dit" target="_blank" rel="noopener noreferrer"><b>Dit</b></a> installed.</li>
+  <li>A router, a web browser and any other devices you want to resolve Handshake names from.</li>
+</ul>
+
+<h3 id="installing-dit">1. Installing Dit</h3>
+
+<p>Installing Dit is as simple as installing any other Umbrel community app: go to <strong>App Store</strong> → <strong>Community App Stores</strong> → <strong>Manage</strong>, paste <code>https://github.com/galetaire/dit</code> and install <strong>Dit</strong>.</p>
+
+<div class="window">
+  <div class="window-bar">🫆 Dit screenshots on Umbrel</div>
+  <div class="collage">
+    <a class="collage-item wide" href="images/dit1.jpg"><img src="images/dit1.jpg" alt="Dit app page in the Umbrel community app store" loading="lazy"><span class="collage-caption"><b>1</b> Dit community app available on Umbrel</span></a>
+    <a class="collage-item" href="images/bobdns2.png"><img src="images/bobdns2.png" alt="Umbrel App Store menu with Community App Stores and Manage" loading="lazy"><span class="collage-caption"><b>2</b> Installing Dit as a community app</span></a>
+  </div>
+</div>
+
+<h3 id="configuration">2. Set up devices</h3>
+
+<p><b>Dit</b> runs <a href="https://github.com/handshake-org/hnsd" target="_blank" rel="noopener noreferrer"><b>hnsd</b></a>, a Handshake light client. After installation, it starts from a checkpoint and needs 1 to 5 minutes to sync block headers. From then on, it verifies every Handshake answer against them.</p>
+
+<p>Once it's synced, you can use it in two ways, chosen under <b>Listening mode</b>:</p>
+
+<ul>
+  <li><b>DNS server for your network:</b> listens on port <code>53</code>.</li>
+  <li><b>Upstream for Pi-hole or AdGuard Home</b>, if you already use one of them: listens only on port <code>5300</code> and leaves port <code>53</code> to them.</li>
+</ul>
+
+<p>After choosing a mode, go to <b>Set up devices</b> and follow the instructions for the devices you want to use. The screenshots below show the process for a router and an Android phone, using the <b>DNS server for your network</b> mode.</p>
+
+<div class="window">
+  <div class="window-bar">🫆 Dit setup screenshots</div>
+  <div class="collage">
+    <a class="collage-item" href="images/dit6.png"><img src="images/dit6.png" alt="Dit's setup instructions for a router" loading="lazy"><span class="collage-caption"><b>1</b> Router setup instructions</span></a>
+    <a class="collage-item wide" href="images/dit2.png"><img src="images/dit2.png" alt="Router settings with a fixed IP address for the Umbrel and the Umbrel set as DNS server" loading="lazy"><span class="collage-caption"><b>2</b> Router: give your Umbrel a fixed IP address and set it as your network's DNS server.</span></a>
+    <a class="collage-item" href="images/dit7.png"><img src="images/dit7.png" alt="Dit's setup instructions for Android" loading="lazy"><span class="collage-caption"><b>3</b> Android setup instructions</span></a>
+    <a class="collage-item" href="images/dit3.jpeg"><img src="images/dit3.jpeg" alt="Android Wi-Fi settings with IP settings set to Static and the Umbrel's IP address as DNS" loading="lazy"><span class="collage-caption"><b>4</b> Android: set IP settings to Static and enter your Umbrel's IP address as the DNS.</span></a>
+    <a class="collage-item tall" href="images/dit4.jpeg"><img src="images/dit4.jpeg" alt="Android Private DNS setting turned off" loading="lazy"><span class="collage-caption"><b>5</b> Android: make sure Private DNS is off. If you turn it on at any point, the Wi-Fi settings from the previous step will be erased and you'll have to enter them again.</span></a>
+    <a class="collage-item" href="images/dit5.jpeg"><img src="images/dit5.jpeg" alt="Use secure DNS setting on Android set to use your current service provider" loading="lazy"><span class="collage-caption"><b>6</b> Android: set <b>Use secure DNS</b> to <b>Use your current service provider</b>.</span></a>
+  </div>
+</div>
+
+<h3 id="secure-sites">3. Resolve sites with DANE</h3>
+
+<p>To open secure (HTTPS) sites, you need to set up a proxy and install the Dit certificate on each device. You'll find the setup instructions for each device at the bottom of the <b>Secure sites</b> page.</p>
+
+<ul>
+  <li>In a desktop browser, the process is the same as for <a href="fingertip.html">Fingertip</a>, although the exact steps vary a little between browsers (Firefox, Chrome, Brave…).</li>
+  <li>On Android, the steps also depend on the browser you use.</li>
+</ul>
+
+<p>The screenshots below show how to set up the DANE proxy and certificate on a Windows 11 desktop and on an Android phone.</p>
+
+<div class="window">
+  <div class="window-bar">🫆 Dit DANE setup screenshots</div>
+  <div class="collage">
+    <a class="collage-item wide" href="images/dane1.png"><img src="images/dane1.png" alt="Downloading the Dit certificate in Chrome on Windows 11" loading="lazy"><span class="collage-caption"><b>1</b> Windows 11, Chrome: download the Dit certificate.</span></a>
+    <a class="collage-item" href="images/dane2.png"><img src="images/dane2.png" alt="Installing the Dit certificate in Windows 11 from Chrome's settings" loading="lazy"><span class="collage-caption"><b>2</b> Windows 11, Chrome: install the Dit certificate in Windows. You can do this from Chrome's settings.</span></a>
+    <a class="collage-item tall" href="images/dane3.png"><img src="images/dane3.png" alt="Proxy address shown on Dit's secure sites page" loading="lazy"><span class="collage-caption"><b>3</b> Windows 11, Chrome: copy the proxy address from Dit.</span></a>
+    <a class="collage-item" href="images/dane4.png"><img src="images/dane4.png" alt="Windows 11 proxy settings with Dit's proxy address entered" loading="lazy"><span class="collage-caption"><b>4</b> Windows 11, Chrome: add the address to the Windows proxy settings.</span></a>
+    <a class="collage-item" href="images/chromedane1.jpeg"><img src="images/chromedane1.jpeg" alt="Dit's web page open on an Android phone" loading="lazy"><span class="collage-caption"><b>5</b> Android: open Dit on your phone.</span></a>
+    <a class="collage-item wide" href="images/chromedane2.jpeg"><img src="images/chromedane2.jpeg" alt="Downloading the Dit certificate on an Android phone" loading="lazy"><span class="collage-caption"><b>6</b> Android: download the Dit certificate to your phone.</span></a>
+    <a class="collage-item" href="images/chromedane3.jpeg"><img src="images/chromedane3.jpeg" alt="CA certificates section in Android's security settings" loading="lazy"><span class="collage-caption"><b>7</b> Android: go to CA certificates in your phone's settings. The exact path depends on the phone brand.</span></a>
+    <a class="collage-item wide" href="images/chromedane4.jpeg"><img src="images/chromedane4.jpeg" alt="Installing the downloaded Dit certificate as a CA certificate on Android" loading="lazy"><span class="collage-caption"><b>8</b> Android: install the certificate you just downloaded. If you haven't yet set IP settings to Static and entered your Umbrel's IP address as the DNS, do it now too.</span></a>
+    <a class="collage-item" href="images/firefoxdane1.jpeg"><img src="images/firefoxdane1.jpeg" alt="Firefox for Android secret settings menu" loading="lazy"><span class="collage-caption"><b>9</b> Firefox for Android: open the Secret settings.</span></a>
+    <a class="collage-item wide" href="images/firefoxdane2.jpeg"><img src="images/firefoxdane2.jpeg" alt="Use third party CA certificates option turned on in Firefox for Android" loading="lazy"><span class="collage-caption"><b>10</b> Firefox for Android: in Secret settings, turn on <b>Use third party CA certificates</b>.</span></a>
+  </div>
+</div>
+
+<h3 id="secure-sites-sane">4. Resolve sites with Stateless DANE (SANE)</h3>
+
+<p>As you'll see, there is also a beta feature to validate Stateless DANE (SANE). SANE is still quite experimental, and as far as I know, few sites support it yet. If you also use the <b><a href="castell.html">Castell</a></b> app to host your sites, Castell has a beta feature that generates the proofs your sites need to support SANE.</p>
+
+<div class="window">
+  <div class="window-bar">🏰 Castell and 🫆 Dit SANE setup screenshots</div>
+  <div class="collage">
+    <a class="collage-item wide" href="images/castelldane1.png"><img src="images/castelldane1.png" alt="Castell domain settings with the Stateless DANE proofs option" loading="lazy"><span class="collage-caption"><b>1</b> In Castell, turn on <b>Stateless DANE proofs</b> for your domain.</span></a>
+    <a class="collage-item" href="images/castelldane2.png"><img src="images/castelldane2.png" alt="Dit's Stateless DANE search bar showing a domain as validated" loading="lazy"><span class="collage-caption"><b>2</b> In Dit, use the Stateless DANE bar to check that your domain actually serves the proofs.</span></a>
+  </div>
+</div>
+
+<p>What's the difference between DANE and SANE?</p>
+
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th>Plain DANE (Dit's proxy today)</th>
+      <th>SANE (what Castell now embeds)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>What the client needs</th>
+      <td>A trusted resolver that does DNSSEC: hnsd asking Handshake peers for proofs, plus DNSSEC lookups for each site</td>
+      <td>Only the recent tree roots, a few KB, refreshed at most weekly</td>
+    </tr>
+    <tr>
+      <th>Lookups when you open a site</th>
+      <td>Proof requests to peers, then DNSKEY, DS and TLSA lookups</td>
+      <td>None for verification; only an untrusted address lookup, which can go over encrypted DNS</td>
+    </tr>
+    <tr>
+      <th>Privacy</th>
+      <td>Handshake peers and resolvers see which names you visit</td>
+      <td>Nobody learns more than from an ordinary encrypted address lookup</td>
+    </tr>
+    <tr>
+      <th>Reliability</th>
+      <td>Fails if peers or nameservers are slow or blocked</td>
+      <td>Works as long as the site itself responds</td>
+    </tr>
+    <tr>
+      <th>Where it works</th>
+      <td>Only where a trusted resolver is reachable: at home, through Dit</td>
+      <td>Anywhere: mobile data, public Wi-Fi, networks that block Handshake</td>
+    </tr>
+  </tbody>
+</table>
 </div>
 
 <nav class="more-guides" aria-label="More guides">
@@ -52,8 +178,8 @@
 <div id="footer">
   Repository of the current site <a href="https://github.com/galetaire/hnsguides" target="_blank" rel="noopener noreferrer">github.com/galetaire</a>. You can reach me by email at <a href="mailto:spainhousing@yeilmail.com">spainhousing@yeilmail.com</a>.
 </div>
-<script src="theme.js?v=20261121" defer></script>
-<script src="collage.js?v=20261121" defer></script>
-<script src="sections.js?v=20261121" defer></script>
+<script src="theme.js?v=20261122" defer></script>
+<script src="collage.js?v=20261122" defer></script>
+<script src="sections.js?v=20261122" defer></script>
 </body>
 </html>
