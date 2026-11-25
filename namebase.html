@@ -22,22 +22,152 @@
 
 <div class="intro">
   <img src="images/namebase-mark.png" alt="Namebase">
-  <p>Description coming soon.</p>
+  <p><b>Namebase</b> is a domain registry and registrar for the decentralized web. Among other things, you can acquire decentralized domains for up to 10 years and put them to use directly from its infrastructure.</p>
 </div>
 
 <div class="guide">
-<h2>Namebase guide</h2>
+<h2>How to host a website using a domain acquired on Namebase</h2>
+
+<blockquote>
+  <p><strong>Note:</strong> <a href="https://namebase.io/" target="_blank" rel="noopener noreferrer">Namebase</a> is a custodial service, and this guide covers its registrar service. Namebase also offers a non-custodial wallet, <a href="https://namebase.io/wallet" target="_blank" rel="noopener noreferrer">Namebase Wallet</a>, which can do everything Bob Wallet does with a more modern and intuitive interface, though it is not open source. Both wallets are the best option for self-custody.</p>
+</blockquote>
 
 <nav class="toc" aria-label="On this page">
   <b>On this page</b>
   <ul>
     <li><a href="#what-you-need">0. What you need</a></li>
+    <li><a href="#get-domain">1. Get a domain on Namebase</a></li>
+    <li><a href="#http-site">2. Set up an HTTP site on GitHub and Vercel</a>
+      <ul>
+        <li><a href="#connect-vercel">Optional: Keep your repository private with Vercel</a></li>
+      </ul>
+    </li>
+    <li><a href="#https-site">3. Set up an HTTPS site on Castell</a></li>
+    <li><a href="#yeil-analytics">4. See your site traffic with Yeil Analytics</a></li>
   </ul>
 </nav>
 
 <h3 id="what-you-need">0. What you need</h3>
 
-<p><small>This guide is a work in progress, more steps coming soon.</small></p>
+<ul>
+  <li>A <a href="https://namebase.io/" target="_blank" rel="noopener noreferrer"><strong>Namebase</strong></a> account with a second-level domain (SLD).</li>
+  <li><strong>For an HTTP site:</strong> a <a href="https://github.com/" target="_blank" rel="noopener noreferrer"><strong>GitHub</strong></a> account and, optionally, a <a href="https://vercel.com/" target="_blank" rel="noopener noreferrer"><strong>Vercel</strong></a> account for added privacy.</li>
+  <li><strong>For an HTTPS site:</strong> the <a href="castell.html"><strong>Castell</strong></a> app running on your Umbrel.</li>
+</ul>
+
+<h3 id="get-domain">1. Get a domain on Namebase</h3>
+
+<p>To set up a website, you first need a domain. <a href="https://namebase.io/" target="_blank" rel="noopener noreferrer">Namebase</a> lets you register SLDs and rent them for up to 10 years. We won't cover the process in detail, but you will need some HNS or BTC, since those are the two payment options. A good-looking, cheap option is a <code>.hns</code> domain, such as <code>yourname.hns</code>.</p>
+
+<div class="window">
+  <div class="window-bar"><span aria-hidden="true">🟡🔵</span> Namebase: Get a domain</div>
+  <div class="collage">
+    <a class="collage-item wide" href="images/namebase1.png"><img src="images/namebase1.png" alt="Namebase search bar with domain results" loading="lazy"><span class="collage-caption"><strong>1</strong> Use the search bar to find and register a name that suits you.</span></a>
+  </div>
+</div>
+
+<p>Once you've made the payment, you have to wait for a few block confirmations to make sure the transaction is received. This can take up to 30 minutes. After that, your name should appear in your <strong>Domains</strong> menu. To manage it, go to <strong>Manage &gt; DNS records</strong>.</p>
+
+<div class="window">
+  <div class="window-bar"><span aria-hidden="true">🟡🔵</span> Namebase: Manage your domain</div>
+  <div class="collage">
+    <a class="collage-item wide" href="images/namebase2.png"><img src="images/namebase2.png" alt="Namebase Domains menu listing registered names" loading="lazy"><span class="collage-caption"><strong>2</strong> Your registered domains appear in the <strong>Domains</strong> menu.</span></a>
+    <a class="collage-item wide" href="images/namebase3.png"><img src="images/namebase3.png" alt="Namebase domain page showing the DNS records section" loading="lazy"><span class="collage-caption"><strong>3</strong> Click <strong>Manage</strong> to open the DNS records section.</span></a>
+  </div>
+</div>
+
+<h3 id="http-site">2. Set up an HTTP site on GitHub and Vercel</h3>
+
+<p>Setting up GitHub works the same way as in the <a href="yeil.html#configure-github">Yeil DNS guide</a>. Create a <strong>New repository</strong>, give it a name of your choice, and click <strong>Create repository</strong>.</p>
+
+<p>In your new repository, click <b>Add file → Create new file</b>. Name the file <code>index.html</code> and add some HTML content in the editor, for example:</p>
+
+<pre><code>&lt;h1&gt;Hi, it's me!&lt;/h1&gt;</code></pre>
+
+<p>Commit the changes.</p>
+
+<p>Still on GitHub, open the <b>Settings</b> tab and scroll down to the <b>Pages</b> section. Set the source to the <code>main</code> branch and the <code>/ (root)</code> folder, then click <b>Save</b>. After about 5 minutes, refresh the Pages section: a message at the top will show that your site is live at a URL similar to:</p>
+
+<pre><code>https://youraccount.github.io/yourrepository</code></pre>
+
+<p>Visit the site. At this point, your website is online.</p>
+
+<p>In the <b>Pages</b> section, go to <b>Custom domain</b> and add your Namebase domain, such as:</p>
+
+<pre><code>yourdomain.hns</code></pre>
+
+<p>Because it is not an ICANN domain, GitHub will report that it doesn't work. Even though it will always show <b>"DNS Check in Progress,"</b> your site will still be online. It takes around 30 minutes to go live.</p>
+
+<div class="window">
+  <div class="window-bar">🐈 GitHub: Pages settings</div>
+  <div class="collage">
+    <a class="collage-item wide" href="images/namebase4.png"><img src="images/namebase4.png" alt="GitHub repository with index.html and the CNAME file for the custom domain" loading="lazy"><span class="collage-caption"><b>4</b> Your repository, with the <code>CNAME</code> file GitHub creates for your custom domain</span></a>
+    <a class="collage-item wide" href="images/yeil3.png"><img src="images/yeil3.png" alt="GitHub Pages settings with the custom domain hi.belikebill and DNS Check in Progress" loading="lazy"><span class="collage-caption"><b>5</b> Add your custom domain, “DNS Check in Progress” is expected</span></a>
+  </div>
+</div>
+
+<p>Finally, connect your Namebase domain to GitHub. In your Namebase DNS records, add an <strong>A</strong> record pointing to 185.199.111.153 (a GitHub Pages IP):</p>
+
+<table>
+  <thead>
+    <tr><th>Type</th><th>Host</th><th>Value</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>A</td><td><code>yourname.hns</code></td><td><code>185.199.111.153</code></td></tr>
+  </tbody>
+</table>
+
+<div class="window">
+  <div class="window-bar"><span aria-hidden="true">🟡🔵</span> Namebase DNS: New A record</div>
+  <div class="collage">
+    <a class="collage-item wide" href="images/namebase3.png"><img src="images/namebase3.png" alt="Namebase new record form with an A record pointing to 185.199.111.153" loading="lazy"><span class="collage-caption"><strong>6</strong> Add an A record on Namebase pointing to a GitHub Pages IP.</span></a>
+    <a class="collage-item wide" href="images/namebase5.png"><img src="images/namebase5.png" alt="New site live on GitHub Pages" loading="lazy"><span class="collage-caption"><b>7</b> Your site will be live at your domain</span></a>
+  </div>
+</div>
+
+<p>The new record can take up to about 6 hours to go live. After that, your site will be online at your domain:</p>
+
+<pre><code>http://yourname.hns/</code></pre>
+
+<h3 id="connect-vercel">Optional: Keep your repository private with Vercel</h3>
+
+<p>This last step is optional, and requires a free Vercel account. It's for when you want your site to stay online over HTTP while keeping its GitHub repository private. On GitHub's free plan, GitHub Pages only works with public repositories. If you make your repository private, your site goes offline. Vercel solves this: it reads your repository directly (even a private one) and serves the site itself, so the code can stay private while the site stays online.</p>
+
+<p><b>How it works, in short:</b> you connect GitHub to Vercel, import your website repository, add your domain in Vercel, and then add the DNS records Vercel gives you on Namebase. From then on, Vercel serves your site. Each time you push changes to GitHub, Vercel updates the site automatically.</p>
+
+<div class="window">
+  <div class="window-bar">▲ Deploying your site on Vercel</div>
+  <div class="collage">
+    <a class="collage-item wide" href="images/vercel1.png"><img src="images/vercel1.png" alt="Create a new project" loading="lazy"><span class="collage-caption"><b>1</b> Create a new project in your Vercel account</span></a>
+    <a class="collage-item" href="images/vercel2.png"><img src="images/vercel2.png" alt="Import your website repository" loading="lazy"><span class="collage-caption"><b>2</b> Import your website repository from GitHub</span></a>
+    <a class="collage-item tall" href="images/vercel3.png"><img src="images/vercel3.png" alt="Deploy your project" loading="lazy"><span class="collage-caption"><b>3</b> Click "Import", once deployed then "Continue to Project"</span></a>
+    <a class="collage-item" href="images/vercel4.png"><img src="images/vercel4.png" alt="Manage domains" loading="lazy"><span class="collage-caption"><b>4</b> Go to "Manage Domains"</span></a>
+    <a class="collage-item" href="images/vercel5.png"><img src="images/vercel5.png" alt="Add your domain" loading="lazy"><span class="collage-caption"><b>5</b> Add your domain. As with GitHub Pages, it must be a second-level domain (SLD); a bare TLD won't work</span></a>
+    <a class="collage-item wide" href="images/vercel6.png"><img src="images/vercel6.png" alt="Check the DNS records" loading="lazy"><span class="collage-caption"><b>6</b> Open the DNS records Vercel asks you to add</span></a>
+    <a class="collage-item wide" href="images/namebase6.png"><img src="images/namebase6.png" alt="Add the DNS records on your nameserver" loading="lazy"><span class="collage-caption"><b>7</b> Add the A records on Namebase, the new IP will point to Vercel servers</span></a>
+    <a class="collage-item" href="images/namebase5.png"><img src="images/namebase5.png" alt="Your site is online" loading="lazy"><span class="collage-caption"><b>8</b> Once the records propagate, your site will be online, and you can keep your GitHub repository private</span></a>
+  </div>
+</div>
+
+<blockquote>
+  <p><b>Tip:</b> if your site is plain HTML (no build tools), set <b>Framework Preset</b> to <b>Other</b> when importing. If you later see a <code>404: NOT_FOUND</code> page, go to <b>Settings → Build &amp; Deployment</b>, set the <b>Output Directory</b> to <code>.</code> (a single dot), and redeploy.</p>
+</blockquote>
+
+<h3 id="https-site">3. Set up an HTTPS site on Castell</h3>
+
+<p>Setting up Castell for your Namebase domains works the same way as described in the <a href="castell.html#hosting">Castell guide</a>. The only difference is that you use Namebase instead of Yeil, and the <code>A</code> record in Namebase must point to your VPS's IP address (or to your home network's IP if you follow path A). That said, we strongly recommend using a VPS (path B) if you want to keep your site online permanently.</p>
+
+<div class="window">
+  <div class="window-bar"><span aria-hidden="true">🟡🔵</span> Namebase DNS: New A record</div>
+  <div class="collage">
+    <a class="collage-item wide" href="images/castell4.png"><img src="images/castell4.png" alt="Copy the generated records and add them to Namebase." loading="lazy"><span class="collage-caption"><b>1</b> Copy the generated records on Castell and add them to Namebase.</span></a>
+    <a class="collage-item wide" href="images/namebase7.png"><img src="images/namebase7.png" alt="Namebase new record form with an A record pointing to our VPS IP" loading="lazy"><span class="collage-caption"><strong>2</strong> The A record on Namebase must point to your VPS's IP.</span></a>
+  </div>
+</div>
+
+<h3 id="yeil-analytics">4. See your site traffic with Yeil Analytics</h3>
+
+<p><small>This section is a work in progress, more steps coming soon.</small></p>
 </div>
 
 <nav class="more-guides" aria-label="More guides">
