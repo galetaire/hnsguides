@@ -167,7 +167,50 @@
 
 <h3 id="yeil-analytics">4. See your site traffic with Yeil Analytics</h3>
 
-<p><small>This section is a work in progress, more steps coming soon.</small></p>
+<p>Your site is now live at your domain. If you want to see how much traffic it gets, you can use <a href="https://analytics.yeil.org/" target="_blank" rel="noopener noreferrer">Yeil Analytics</a>. Its free tier covers analytics for one domain, and unlimited domains cost $12/year. Note that, as far as I could test, it only works with SLDs, so a bare TLD won't work.</p>
+
+<p>Once you're inside your Yeil account, click <b>New site</b> and add your SLD. I'll use <code>just.belikebill</code> for this example. Then go to <b>Settings</b> and leave <b>Tracking setup</b> empty. A custom <b>Collection hostname</b> such as <code>stats.your.name</code> can help you get around ad and tracker blockers, but we won't use that feature here, so go straight to <b>Install</b>.</p>
+
+<div class="window">
+  <div class="window-bar">🐦‍⬛ Yeil Analytics: add your site</div>
+  <div class="collage">
+    <a class="collage-item wide" href="images/analytics1.png"><img src="images/analytics1.png" alt="Yeil Analytics New site form with the SLD just.belikebill entered" loading="lazy"><span class="collage-caption"><b>1</b> Add your SLD to Yeil Analytics</span></a>
+    <a class="collage-item wide" href="images/analytics2.png"><img src="images/analytics2.png" alt="Yeil Analytics site settings, Install section showing the tracking snippet" loading="lazy"><span class="collage-caption"><b>2</b> Go to Settings, then Install</span></a>
+  </div>
+</div>
+
+<p>Under <b>Install</b>, you'll see a snippet that you need to add to the <code>&lt;head&gt;</code> of each page of your site. Something like this:</p>
+
+<pre><code>&lt;script async src="https://yeil.cloud/s/cabbb881-4454-4392-a2f8-f9c92d346de6.js"&gt;&lt;/script&gt;</code></pre>
+
+<div class="window">
+  <div class="window-bar">🐦‍⬛ Yeil Analytics: add the snippet to your website code</div>
+  <div class="collage">
+    <a class="collage-item wide" href="images/analytics3.png"><img src="images/analytics3.png" alt="Yeil Analytics Install section showing the tracking snippet to copy" loading="lazy"><span class="collage-caption"><b>3</b> Copy the snippet under <b>Install</b></span></a>
+    <a class="collage-item wide" href="images/analytics4.png"><img src="images/analytics4.png" alt="HTML page source with the Yeil tracking script pasted inside the head element" loading="lazy"><span class="collage-caption"><b>4</b> Paste the snippet into the <code>&lt;head&gt;</code> of your HTML pages</span></a>
+  </div>
+</div>
+
+<p>Once that's done, visit your site in your favorite browser and open the Developer Tools (right-click the page and choose <b>Inspect</b>, or press <kbd>F12</kbd>). Then go to the <b>Console</b> tab. The first time you paste code there, the browser may ask you to type <code>allow pasting</code> (or the equivalent in your language) before it lets you continue. After that, run the following in the console to check that the tracker is working on the page:</p>
+
+<pre><code>window.yeil.debug(true);
+window.yeil("test_event");
+window.yeil.debug();</code></pre>
+
+<p>If the console returns something like this, the tracker is working:</p>
+<pre><code>{enabled: true, ready: true, last: 'ready', counters: {…}}</code></pre>
+<p>Now go to the main Yeil Analytics page. You should see some visits (your own), and the <code>test_event</code> we just ran should appear in the <b>Events</b> section.</p>
+
+<div class="window">
+  <div class="window-bar">🐦‍⬛ Yeil Analytics: check that tracking works</div>
+  <div class="collage">
+    <a class="collage-item wide" href="images/analytics6.png"><img src="images/analytics6.png" alt="Browser Developer Tools console showing the Yeil tracker status with enabled and ready set to true" loading="lazy"><span class="collage-caption"><b>5</b> Use the browser console to check that the tracker is working</span></a>
+    <a class="collage-item wide" href="images/analytics5.png"><img src="images/analytics5.png" alt="Yeil Analytics dashboard showing visits and the test_event in the Events section" loading="lazy"><span class="collage-caption"><b>6</b> Check that the test event appears on the analytics page along with your visits and other statistics</span></a>
+  </div>
+</div>
+
+<p>At this point, your site is already collecting statistics!🎉</p>
+
 </div>
 
 <nav class="more-guides" aria-label="More guides">
