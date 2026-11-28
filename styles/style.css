@@ -488,6 +488,13 @@ td a:hover {
   border-radius: 999px;
 }
 
+/* Code and keys inside the dark caption pill stay readable */
+.guide .collage-caption code,
+.guide .collage-caption kbd {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.18);
+}
+
 .lightbox {
   max-width: min(1100px, 94vw);
   padding: 12px;

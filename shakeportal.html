@@ -11,7 +11,7 @@
       <meta property="og:image" content="https://raw.githubusercontent.com/galetaire/galetaireID/refs/heads/main/public/favicon.ico">
       <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
       <link href="https://fonts.googleapis.com/css?family=Questrial" rel="stylesheet" type="text/css">
-      <link href="styles/style.css?v=20261122" rel="stylesheet" type="text/css">
+      <link href="styles/style.css?v=20261128" rel="stylesheet" type="text/css">
       <title>ShakePortal - Handshake functional guide</title>
 </head>
 <body>
@@ -22,22 +22,85 @@
 
 <div class="intro">
   <img src="images/shakeportal-mark.png" alt="ShakePortal">
-  <p>Description coming soon.</p>
+  <p><b>ShakePortal</b> is an Android resolver for <b>Handshake</b> names. A VPN sets a DANE system proxy (built on letsdane) that proves the site's TLSA record itself.</p>
 </div>
 
 <div class="guide">
-<h2>ShakePortal guide</h2>
+<h2>How to resolve Handshake names on your Android</h2>
+
+<blockquote>
+  <p><b>Note:</b> <a href="https://github.com/galetaire/shakeportal/releases" target="_blank" rel="noopener noreferrer"><strong>ShakePortal</strong></a> works as a VPN that only sets a proxy for the phone (it routes no traffic). Ordinary sites go straight out as before. Handshake sites go to a checking proxy inside the app, which re-signs them with a local certificate authority you install once.</p>
+</blockquote>
 
 <nav class="toc" aria-label="On this page">
   <b>On this page</b>
   <ul>
     <li><a href="#what-you-need">0. What you need</a></li>
+    <li><a href="#installing">1. Installing ShakePortal on your Android</a>
+      <ul>
+        <li><a href="#firefox">Setting up ShakePortal on Firefox</a></li>
+      </ul>
+    </li>
+    <li><a href="#publishing">2. ShakePortal on the Google Play Store and Zapstore</a></li>
   </ul>
 </nav>
 
 <h3 id="what-you-need">0. What you need</h3>
 
-<p><small>This guide is a work in progress, more steps coming soon.</small></p>
+<ul>
+  <li>A device running Android 10 or newer.</li>
+  <li><a href="https://github.com/galetaire/shakeportal/releases" target="_blank" rel="noopener noreferrer"><strong>ShakePortal</strong></a> <code>.apk</code>, available on the GitHub releases page and on <a href="https://zapstore.dev/apps/io.github.galetaire.shakeportal" target="_blank" rel="noopener noreferrer"><strong>Zapstore</strong></a>.</li>
+  <li>A web browser, preferably Chrome or Firefox.</li>
+</ul>
+
+<h3 id="installing">1. Installing ShakePortal on your Android</h3>
+
+<p>Once you've downloaded the <code>.apk</code> file, install it on your Android phone. Your phone will warn you that the app comes from an unknown source. You can let it scan the app and then go through the warnings. When the app appears on your home screen, open it and complete the one-time setup.</p>
+
+<p>The first time you tap <b>Open portal</b>, the app will ask for permission to run it as a VPN. The resolver has to work as a VPN, so accept. Next, install the certificate that lets your browser verify Handshake sites securely. Tap <b>Save CA certificate</b> to download it, then go to the CA certificate section in your phone's settings. The exact path depends on the phone brand (on many phones it's <b>Settings → Security → Encryption &amp; credentials → Install a certificate → CA certificate</b>). Once you've found it, install the <code>ShakePortal-CA.crt</code> file as a CA certificate. After that, ShakePortal is fully set up and you can start browsing Handshake sites.</p>
+
+<p>The app also has a section that lists every Handshake site you've visited and how each one was validated, plus a log of all the traffic that goes through the proxy. Keep in mind that your browsers can only resolve Handshake names while the app is running and the portal is open. Closing the app stops the VPN, and with it, resolution.</p>
+
+<div class="window">
+  <div class="window-bar">🕳️ Setting up ShakePortal on your Android</div>
+  <div class="collage">
+    <a class="collage-item wide" href="images/shakeportal1.jpeg"><img src="images/shakeportal1.jpeg" alt="ShakePortal home screen with the portal closed and the Open portal button" loading="lazy"><span class="collage-caption"><b>1</b> Open ShakePortal and tap <b>Open portal</b></span></a>
+    <a class="collage-item" href="images/shakeportal2.jpeg"><img src="images/shakeportal2.jpeg" alt="Android connection request asking to allow ShakePortal to set up a VPN" loading="lazy"><span class="collage-caption"><b>2</b> Allow ShakePortal to set up its VPN connection</span></a>
+    <a class="collage-item tall" href="images/shakeportal3.jpeg"><img src="images/shakeportal3.jpeg" alt="ShakePortal with the portal open and ShakePortal-CA.crt saved to Downloads" loading="lazy"><span class="collage-caption"><b>3</b> With the portal open, tap <b>Save CA certificate</b>. It's saved to Downloads</span></a>
+    <a class="collage-item" href="images/shakeportal4.jpeg"><img src="images/shakeportal4.jpeg" alt="Android Encryption and credentials settings" loading="lazy"><span class="collage-caption"><b>4</b> In your phone's settings, open <b>Encryption &amp; credentials</b> → <b>Install a certificate</b></span></a>
+    <a class="collage-item wide" href="images/shakeportal5.jpeg"><img src="images/shakeportal5.jpeg" alt="Android Install a certificate menu with the CA certificate option" loading="lazy"><span class="collage-caption"><b>5</b> Choose <b>CA certificate</b></span></a>
+    <a class="collage-item" href="images/shakeportal6.jpeg"><img src="images/shakeportal6.jpeg" alt="Android warning shown before installing a CA certificate" loading="lazy"><span class="collage-caption"><b>6</b> Android warns you about CA certificates. Tap <b>Install anyway</b></span></a>
+    <a class="collage-item tall" href="images/shakeportal7.jpeg"><img src="images/shakeportal7.jpeg" alt="Android file picker with ShakePortal-CA.crt in the recent files" loading="lazy"><span class="collage-caption"><b>7</b> Pick <code>ShakePortal-CA.crt</code> from your recent files</span></a>
+    <a class="collage-item" href="images/shakeportal8.jpeg"><img src="images/shakeportal8.jpeg" alt="Android confirming that the CA certificate was installed" loading="lazy"><span class="collage-caption"><b>8</b> The CA certificate is installed</span></a>
+    <a class="collage-item wide" href="images/shakeportal9.jpeg"><img src="images/shakeportal9.jpeg" alt="ShakePortal showing the certificate as installed and the Handshake sites visited, with how each was verified" loading="lazy"><span class="collage-caption"><b>9</b> ShakePortal shows the certificate as installed and lists every Handshake site you open, with how it was verified</span></a>
+    <a class="collage-item" href="images/shakeportal10.jpeg"><img src="images/shakeportal10.jpeg" alt="ShakePortal log listing the connections that went through the proxy" loading="lazy"><span class="collage-caption"><b>10</b> The log shows every connection that goes through the proxy</span></a>
+  </div>
+</div>
+
+<h3 id="firefox">Setting up ShakePortal on Firefox</h3>
+
+<p>The previous setup works automatically in Chrome and may work in other browsers, depending on the browser. In Firefox, for example, you need to turn on <b>Use third party CA certificates</b> in Firefox's secret settings. To unlock them, go to <b>Settings → About Firefox</b> and tap the Firefox logo five times. Firefox will then trust the certificate you installed in your Android settings, and Handshake sites will resolve without problems.</p>
+
+<div class="window">
+  <div class="window-bar">🦊 Setting up ShakePortal in Firefox</div>
+  <div class="collage">
+    <a class="collage-item wide" href="images/firefoxdane1.jpeg"><img src="images/firefoxdane1.jpeg" alt="Firefox for Android secret settings with Use third party CA certificates turned on" loading="lazy"><span class="collage-caption"><b>1</b> Firefox for Android: open the secret settings and turn on <b>Use third party CA certificates</b></span></a>
+  </div>
+</div>
+
+<h3 id="publishing">2. ShakePortal on the Google Play Store and Zapstore</h3>
+
+<p><b>ShakePortal</b> isn't on the Google Play Store yet. Publishing it there is the goal, but it might take a while. For now, you can download it from the <a href="https://github.com/galetaire/shakeportal/releases" target="_blank" rel="noopener noreferrer">GitHub releases page</a> or get it from <a href="https://zapstore.dev/apps/io.github.galetaire.shakeportal" target="_blank" rel="noopener noreferrer">Zapstore</a>, an alternative app store that makes publishing apps much easier. The app is signed with my Nostr key, which you can verify, and if you install it through Zapstore, you can update it from there instead of downloading the <code>.apk</code> file every time a new release comes out.</p>
+
+<div class="window">
+  <div class="window-bar">⚡ Downloading ShakePortal from Zapstore</div>
+  <div class="collage">
+    <a class="collage-item wide" href="images/zapstore1.png"><img src="images/zapstore1.png" alt="Zapstore home page with the Download for Android button" loading="lazy"><span class="collage-caption"><b>1</b> Get the Zapstore app from <b>Download for Android</b></span></a>
+    <a class="collage-item" href="images/zapstore2.png"><img src="images/zapstore2.png" alt="ShakePortal's app page on Zapstore" loading="lazy"><span class="collage-caption"><b>2</b> Search for ShakePortal and install it from its Zapstore page</span></a>
+    <a class="collage-item tall" href="images/zapstore3.png"><img src="images/zapstore3.png" alt="Zapstore's developer claim showing ShakePortal is signed with Galetaire's Nostr key" loading="lazy"><span class="collage-caption"><b>3</b> The developer claim proves the app is signed with my Nostr key</span></a>
+    <a class="collage-item" href="images/zapstore4.png"><img src="images/zapstore4.png" alt="Galetaire's developer profile on Zapstore listing ShakePortal and its latest release" loading="lazy"><span class="collage-caption"><b>4</b> My developer profile, with ShakePortal and its latest release</span></a>
+  </div>
+</div>
 </div>
 
 <nav class="more-guides" aria-label="More guides">
@@ -52,8 +115,8 @@
 <div id="footer">
   Repository of the current site <a href="https://github.com/galetaire/hnsguides" target="_blank" rel="noopener noreferrer">github.com/galetaire</a>. You can reach me by email at <a href="mailto:spainhousing@yeilmail.com">spainhousing@yeilmail.com</a>.
 </div>
-<script src="theme.js?v=20261122" defer></script>
-<script src="collage.js?v=20261122" defer></script>
-<script src="sections.js?v=20261122" defer></script>
+<script src="theme.js?v=20261128" defer></script>
+<script src="collage.js?v=20261128" defer></script>
+<script src="sections.js?v=20261128" defer></script>
 </body>
 </html>
